@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+https://apexcharts.com/docs/angular-charts/
+https://www.universal-tutorial.com/angular-tutorials/angular-tailwindcss-integration
+https://www.xfive.co/blog/testing-angular-faster-jest/
+https://github.com/thymikee/jest-preset-angular
+https://timdeschryver.dev/blog/integrate-jest-into-an-angular-application-and-library#adding-jest
