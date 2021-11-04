@@ -1,0 +1,254 @@
+<section class=" py-1 bg-blueGray-50">
+  <div class="w-full px-4 mx-auto mt-6">
+    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+      <div class="rounded-t bg-white mb-0 px-6 py-6">
+        <div class="text-center flex justify-between">
+          <h6 class="text-blueGray-700 text-xl font-bold">
+            Formularz
+          </h6>
+        </div>
+      </div>
+      <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+        <form [formGroup]="form">
+          <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            Dane identyfikacyjne
+          </h6>
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-3/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  Numer stacji
+                </label>
+                <input type="text" name="stationNumber" id="stationNumber" formControlName="stationNumber"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('stationNumber')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                <div class="mt-1">
+                  <div *ngFor="let error of errors['stationNumber']"
+                       class="label-error">
+                    {{error}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-3/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  Nazwa stacji
+                </label>
+                <input type="text"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="Kraków Południe">
+              </div>
+            </div>
+            <div class="w-full lg:w-3/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  Kod Stacji
+                </label>
+                <input type="email"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="KR102">
+              </div>
+            </div>
+            <div class="w-full lg:w-3/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  Typ stacji
+                </label>
+                <input type="text"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="Lucky">
+              </div>
+            </div>
+            <div class="w-full lg:w-3/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  Kod międzynarodowy
+                </label>
+                <input type="text"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="PL-KR-102">
+              </div>
+            </div>
+          </div>
+          
+          <hr class="mt-6 border-b-1 border-blueGray-300">
+          
+          <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            Dane lokalizacyjne
+          </h6>
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-12/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  Adres
+                </label>
+                <input type="text"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  Województwo
+                </label>
+                <input type="email"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="Małopolskie">
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  Miejscowość
+                </label>
+                <input type="text"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="Kraków">
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  Typ Obszaru
+                </label>
+                <input type="text"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="A19">
+              </div>
+            </div>
+          </div>
+          
+          <hr class="mt-6 border-b-1 border-blueGray-300">
+          
+          <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            Parametry Pomiarowe
+          </h6>
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-4/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  Mierzone zanieczyszczenia
+                </label>
+                <input type="text"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="Benzen">
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  Tryb Pomiaru
+                </label>
+                <input type="text"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="Automatyczny">
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  Strefa
+                </label>
+                <input type="text"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="Centrum">
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  Data początkowa
+                </label>
+                <input type="text"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="10-12-2021">
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  Data końcowa
+                </label>
+                <input type="text"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="12-10-2021">
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap mt-8">
+            <div class="w-48 lg:w-12/12 px-4 m-auto">
+              <button type="button"
+                      class="w-full px-3 py-4 text-white bg-purple rounded-md focus:outline-none flex inline-flex justify-center"
+                      (keyup.enter)="submit()" (click)="submit()">
+                <span *ngIf="!processing">Szukaj</span>
+                <svg *ngIf="processing" class="animate-spin m-auto h-6 w-5 text-white"
+                     xmlns="http://www.w3.org/2000/svg"
+                     fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--<div class="flex items-center min-h-screen dark:bg-gray-900">-->
+<!--<div class="container mx-auto">-->
+<!--<div class="max-w-md mx-auto my-10">-->
+<!--<div class="text-center">-->
+<!--<h1 class="my-3 text-3xl font-semibold text-black dark:text-gray-200">Search</h1>-->
+<!--</div>-->
+<!--<div class="m-7">-->
+<!--<form [formGroup]="form">-->
+<!--<div class="mb-6">-->
+<!--<label for="station" class="block mb-2 text-sm text-gray-400 dark:text-gray-400">Station Name</label>-->
+<!--<input type="station" name="station" id="station" formControlName="station" (keyup.enter)="submit()"-->
+<!--(ngModelChange)="onFormChange('station')"-->
+<!--class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"/>-->
+<!--<div class="mt-1">-->
+<!--<div *ngFor="let error of errors['station']"-->
+<!--class="label-error">-->
+<!--{{error}}-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="mb-6">-->
+<!--<div class="flex justify-between mb-2">-->
+<!--<label for="status" class="text-sm text-gray-400 dark:text-gray-400">Status</label>-->
+<!--</div>-->
+<!--<input type="status" name="status" id="status" formControlName="status" (keyup.enter)="submit()"-->
+<!--class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"/>-->
+<!--<div class="mt-1">-->
+<!--<div *ngFor="let error of errors['status']"-->
+<!--class="label-error">-->
+<!--{{error}}-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="mb-6">-->
+<!--<button type="button"-->
+<!--class="w-full px-3 py-4 text-white bg-purple rounded-md focus:outline-none flex inline-flex justify-center"-->
+<!--(keyup.enter)="submit()" (click)="submit()">-->
+<!--<span *ngIf="!processing">Search</span>-->
+<!--<svg *ngIf="processing" class="animate-spin m-auto h-6 w-5 text-white" xmlns="http://www.w3.org/2000/svg"-->
+<!--fill="none" viewBox="0 0 24 24">-->
+<!--<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>-->
+<!--<path class="opacity-75" fill="currentColor"-->
+<!--d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>-->
+<!--</svg>-->
+<!--</button>-->
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->

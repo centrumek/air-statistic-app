@@ -56,13 +56,13 @@ describe('MenuComponent', () => {
   it('should have search button', () => {
     const searchButton = <HTMLLinkElement>spectator.query(byText('Szukaj'));
     expect(searchButton).toBeTruthy();
-    expect(searchButton.textContent).toEqual('Szukaj');
+    expect(searchButton.textContent?.trim()).toEqual('Szukaj');
   });
 
   it('should have air button', () => {
     const airButton = <HTMLLinkElement>spectator.query(byText('Air'));
     expect(airButton).toBeTruthy();
-    expect(airButton.textContent).toEqual('Air');
+    expect(airButton.textContent?.trim()).toEqual('Air');
   });
 
   it('should navigate to dashboard after click on app logo', fakeAsync(() => {
