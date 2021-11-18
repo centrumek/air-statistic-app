@@ -1,1 +1,3 @@
 /.idea
+air-statistic-app-backend/vendor/
+air-statistic-app-backend/.env
