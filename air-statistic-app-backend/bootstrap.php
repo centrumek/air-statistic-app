@@ -1,10 +1,10 @@
 <?php
-require 'vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
-use Dotenv\Dotenv;
 use App\System\DBConnector;
+use Dotenv\Dotenv;
 
 $dotenv = new DotEnv(__DIR__);
 $dotenv->load();
 
-$dbConnection = (new DBConnector())->getConnection();
+$dbConnection = new DBConnector();
