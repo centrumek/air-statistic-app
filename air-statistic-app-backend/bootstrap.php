@@ -7,4 +7,4 @@ use Dotenv\Dotenv;
 $dotenv = new DotEnv(__DIR__);
 $dotenv->load();
 
-$dbConnection = new DBConnector();
+$dbConnection = (new DBConnector())->getConnection();

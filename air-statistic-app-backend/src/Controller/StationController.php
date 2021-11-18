@@ -7,15 +7,15 @@ class StationController {
 
     private $db;
     private $requestMethod;
-    private $userId;
+    private $stationId;
 
     private $stationGateway;
 
-    public function __construct($db, $requestMethod, $userId)
+    public function __construct($db, $requestMethod, $stationId)
     {
         $this->db = $db;
         $this->requestMethod = $requestMethod;
-        $this->userId = $userId;
+        $this->stationId = $stationId;
 
         $this->stationGateway = new StationGateway($db);
     }
@@ -24,8 +24,8 @@ class StationController {
     {
         switch ($this->requestMethod) {
             case 'GET':
-                if ($this->userId) {
-                    $response = $this->getStation($this->userId);
+                if ($this->stationId) {
+                    $response = $this->getStation($this->stationId);
                 } else {
                     $response = $this->getAllStations();
                 };

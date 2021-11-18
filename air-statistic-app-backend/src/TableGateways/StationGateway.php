@@ -35,8 +35,7 @@ class StationGateway {
                 *
             FROM
                 stations
-            WHERE station_code = ?;
-        ";
+            WHERE station_code = ?;";
 
         try {
             $statement = $this->db->prepare($statement);
