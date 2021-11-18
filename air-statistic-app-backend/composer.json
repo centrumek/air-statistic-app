@@ -1,10 +1,11 @@
 {
   "require": {
-    "vlucas/phpdotenv": "^2.4"
+    "vlucas/phpdotenv": "^2.4",
+    "ext-pdo": "*"
   },
   "autoload": {
     "psr-4": {
-      "Src\\": "air-statistic-app-backend/"
+      "App\\": "air-statistic-app-backend/src"
     }
   }
 }

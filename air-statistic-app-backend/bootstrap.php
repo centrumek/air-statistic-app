@@ -2,8 +2,7 @@
 require 'vendor/autoload.php';
 
 use Dotenv\Dotenv;
-
-use system\DBConnector;
+use App\System\DBConnector;
 
 $dotenv = new DotEnv(__DIR__);
 $dotenv->load();

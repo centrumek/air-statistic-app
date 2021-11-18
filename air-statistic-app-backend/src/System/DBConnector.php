@@ -1,5 +1,5 @@
 <?php
-namespace system;
+namespace App\System;
 
 class DBConnector {
 
