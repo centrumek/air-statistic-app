@@ -41,7 +41,7 @@ class StationGateway {
             $statement = $this->db->prepare($statement);
             $statement->execute(array($id));
             $result = $statement->fetchAll(\PDO::FETCH_ASSOC);
-            return $result;
+            return $result[0];
         } catch (\PDOException $e) {
             exit($e->getMessage());
         }

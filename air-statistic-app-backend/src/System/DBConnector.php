@@ -15,9 +15,9 @@ class DBConnector {
 
         try {
             $this->dbConnection = new \PDO(
-                "pgsql:host=$host;port=$port;dbname=$db",
+                "pgsql:host=$host;port=$port;dbname=$db;options='--client_encoding=UTF8'",
                 $user,
-                $pass
+                $pass,
             );
         } catch (\PDOException $e) {
             exit($e->getMessage());
