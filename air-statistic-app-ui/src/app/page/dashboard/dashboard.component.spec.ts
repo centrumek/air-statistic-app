@@ -3,7 +3,7 @@ import { Spectator } from '@ngneat/spectator';
 import { createComponentFactory } from '@ngneat/spectator/jest';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { DashboardComponent } from './dashboard.component';
-import { SharedModule } from '../../shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 describe('DashboardComponent', () => {
   let spectator: Spectator<DashboardComponent>;

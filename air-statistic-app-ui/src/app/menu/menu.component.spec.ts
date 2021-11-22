@@ -6,7 +6,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { Router } from '@angular/router';
 import { fakeAsync, tick } from '@angular/core/testing';
 import { ROUTES } from '../app-routing.module';
-import { SharedModule } from '../shared.module';
+import { SharedModule } from '../shared/shared.module';
 import { DashboardModule } from '../page/dashboard/dashboard.module';
 import { APP_BASE_HREF } from '@angular/common';
 

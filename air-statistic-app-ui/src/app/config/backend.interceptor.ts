@@ -10,8 +10,8 @@ import {
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
 import { delay } from 'rxjs/operators';
-import { of } from 'rxjs/internal/observable/of';
 import { UrlHelper } from '../utils/url.helper';
+import { of } from 'rxjs/internal/observable/of';
 
 const EXAMPLE_ERROR_RESPONSE = {
   error: 'error',

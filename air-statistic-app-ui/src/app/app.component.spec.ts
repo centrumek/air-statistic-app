@@ -3,7 +3,7 @@ import { AppComponent } from './app.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { Spectator } from '@ngneat/spectator';
 import { createComponentFactory } from '@ngneat/spectator/jest';
-import { SharedModule } from './shared.module';
+import { SharedModule } from './shared/shared.module';
 import { MenuComponent } from './menu/menu.component';
 
 describe('AppComponent', () => {

@@ -3,9 +3,9 @@ import { Spectator } from '@ngneat/spectator';
 import { createComponentFactory } from '@ngneat/spectator/jest';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { SearchComponent } from './search.component';
-import { SharedModule } from '../../../shared.module';
+import { SharedModule } from '../../../shared/shared.module';
 
-describe('SearchComponent', () => {
+describe('SearchPageComponent', () => {
   let spectator: Spectator<SearchComponent>;
   let component: SearchComponent;
   const createComponent = createComponentFactory<SearchComponent>({
