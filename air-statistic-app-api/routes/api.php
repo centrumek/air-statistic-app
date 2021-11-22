@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/station', [\App\Http\Controllers\API\StationController::class, 'getAll']);
+Route::get('/voivodeships', [\App\Http\Controllers\API\StationController::class, 'getAvailableVoivodeship']);
+Route::post('/getStationsAdv', [\App\Http\Controllers\API\StationController::class, 'getStationsAdv']);
 Route::get('/station/{station_code}', [\App\Http\Controllers\API\StationController::class, 'getStation']);
 
 Route::get('/measurements/toppolluted', [\App\Http\Controllers\API\MeasurementController::class, 'getTopPollutedLocations']);
