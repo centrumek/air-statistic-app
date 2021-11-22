@@ -16,10 +16,10 @@ class Measurement extends Model
      */
     protected $table = 'measurements';
 
-    /*    public function thread()
-        {
-            return $this->belongsTo(Thread::class, 'thread_id');
-        }*/
+    public function stand()
+    {
+        return $this->hasMany('App\Models\Stand', 'stand_code', 'stand_code');
+    }
 
 
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\API\BaseController as BaseController;
+use App\Models\Measurement;
+use App\Models\Stand;
 use App\Models\Station;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,13 +40,22 @@ class StationController extends BaseController
         return $this->sendResponse($station, 'Station retrieved successfully.');
     }
 
-    /**
-     * advance query for stations
+     /**
+     * show stations - advanced query
      * @param $id
      * @return \Illuminate\Http\Response
      */
+  /*
     public function getStationsAdv(Request $request)
     {
+        $station = Stand::with('stations')->orderBy('measurement_date', 'desc')->paginate(20);
 
+        if($station->isEmpty())
+            return $this->sendError('Station not found', 404);
+
+        return $this->sendResponse($station, 'Station retrieved successfully.');
     }
+    */
+
+
 }

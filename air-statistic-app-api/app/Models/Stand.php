@@ -16,10 +16,14 @@ class Stand extends Model
      */
     protected $table = 'stands';
 
-    /*    public function thread()
-        {
-            return $this->belongsTo(Thread::class, 'thread_id');
-        }*/
+/*   public function station()
+   {
+       return $this->belongsTo(Station::class, 'station_code');
+   }*/
 
+    public function station()
+    {
+        return $this->hasMany('App\Models\Station', 'station_code', 'station_code');
+    }
 
 }

@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/station', [\App\Http\Controllers\API\StationController::class, 'getAll']);
 Route::get('/station/{id}', [\App\Http\Controllers\API\StationController::class, 'getStation']);
+
+Route::get('/measurements/toppolluted', [\App\Http\Controllers\API\MeasurementController::class, 'getTopPollutedLocations']);
+Route::get('/measurements/leastpolluted', [\App\Http\Controllers\API\MeasurementController::class, 'getTopClearLocations']);
+
+Route::get('/measurements/archive/{id}', [\App\Http\Controllers\API\MeasurementController::class, 'getArchiveStationData']);
+Route::get('/measurements/station/{id}', [\App\Http\Controllers\API\MeasurementController::class, 'getMeasurementsForStation']);
+
+
+
