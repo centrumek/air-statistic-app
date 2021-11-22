@@ -27,12 +27,12 @@ class StationController extends BaseController
 
     /**
      * show one station
-     * @param $id
+     * @param $station_code
      * @return \Illuminate\Http\Response
      */
-    public function getStation($id)
+    public function getStation($station_code)
     {
-        $station = DB::table('stations')->where('station_code', '=', $id)->get();
+        $station = DB::table('stations')->where('station_code', '=', $station_code)->get();
 
         if($station->isEmpty())
             return $this->sendError('Station not found', 404);
