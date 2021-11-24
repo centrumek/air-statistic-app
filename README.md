@@ -1,17 +1,45 @@
 # air-statistic-app
 
-## Data Set
-http://powietrze.gios.gov.pl/pjp/archives
+The application exposes end-user UI interface and backend API for an open-source
+[dataset](http://powietrze.gios.gov.pl/pjp/archives) visualisation came from [GIOŚ](https://www.gios.gov.pl/en).
 
-...
+## Motivation
 
-### Motivation
+As part of completing the IT project management course at Tadeusz Kościuszko University of Technology,
+we've created an application called **AirFree** to visualise a [dataset](http://powietrze.gios.gov.pl/pjp/archives)
+of [GIOŚ](https://www.gios.gov.pl/en) - Chief Inspectorate of Environmental Protection.
 
-...
+The goal of this project wasn't only the application, but also the possibility to learn team/time management,
+use Agile methodology, prioritize tasks or make new friends being a team.
 
-### Project Vision
+## Project Vision
 
-...
+### Architecture diagram
+```puml
+left to right direction
+
+cloud Network {
+
+    node c1 <<Docker>> as "container" {
+        rectangle ui <<Angular>> as "air-statistic-app-ui"{
+        }
+    }
+    
+    node c2 <<Docker>> as "container" {
+        rectangle api <<Laravel>> as "air-statistic-app-api"{
+        }
+    }
+    
+    node c3 <<Docker>> as "container"{
+        database db <<PostgreSQL>> as "air-statistic-app-db" {
+        }
+    }
+
+    ui <--[bold]--> api : [REST/HTTP]
+    api <--[bold]--> db : [TCP/IP]
+}
+
+```
 
 ### Functionalities
  
