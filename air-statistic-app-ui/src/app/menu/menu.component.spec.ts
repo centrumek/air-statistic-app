@@ -9,6 +9,7 @@ import { ROUTES } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardModule } from '../page/dashboard/dashboard.module';
 import { APP_BASE_HREF } from '@angular/common';
+import { SearchModule } from '../page/search/search.module';
 
 describe('MenuComponent', () => {
   let spectator: Spectator<MenuComponent>;
@@ -22,6 +23,7 @@ describe('MenuComponent', () => {
       NgApexchartsModule,
       DashboardModule,
       SharedModule,
+      SearchModule,
     ],
     declarations: [
       MenuComponent,

@@ -56,7 +56,6 @@ export class SearchComponent extends Form {
         measurementEndDate: {
           value: '2021-02-03'
         },
-
       },
       validationMessages: {
         'stationName': [
@@ -74,7 +73,6 @@ export class SearchComponent extends Form {
     if (this.form.valid) {
       this.processing = true;
       setTimeout(() => {
-        console.log(this.form.value);
         this.apiService.search(this.form.value)
           .subscribe(response => {
             // TODO search result action

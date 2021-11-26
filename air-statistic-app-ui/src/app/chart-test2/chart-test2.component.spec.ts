@@ -1,25 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { Spectator } from '@ngneat/spectator';
+import { createComponentFactory } from '@ngneat/spectator/jest';
 import { ChartTest2Component } from './chart-test2.component';
 
 describe('ChartTest2Component', () => {
+  let spectator: Spectator<ChartTest2Component>;
   let component: ChartTest2Component;
-  let fixture: ComponentFixture<ChartTest2Component>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ChartTest2Component]
-    })
-      .compileComponents();
+  const createComponent = createComponentFactory<ChartTest2Component>({
+    component: ChartTest2Component,
+    imports: [
+      RouterTestingModule,
+      NgApexchartsModule
+    ],
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChartTest2Component);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    spectator = createComponent();
+    component = spectator.component;
   });
 
-  it('should create', () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,25 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { Spectator } from '@ngneat/spectator';
+import { createComponentFactory } from '@ngneat/spectator/jest';
 import { DetailNavigationComponent } from './detail-navigation.component';
 
 describe('DetailNavigationComponent', () => {
+  let spectator: Spectator<DetailNavigationComponent>;
   let component: DetailNavigationComponent;
-  let fixture: ComponentFixture<DetailNavigationComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [DetailNavigationComponent]
-    })
-      .compileComponents();
+  const createComponent = createComponentFactory<DetailNavigationComponent>({
+    component: DetailNavigationComponent,
+    imports: [
+      RouterTestingModule
+    ],
+    declarations: [DetailNavigationComponent],
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DetailNavigationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    spectator = createComponent();
+    component = spectator.component;
   });
 
-  it('should create', () => {
+  it('should create back component', () => {
     expect(component).toBeTruthy();
   });
 });

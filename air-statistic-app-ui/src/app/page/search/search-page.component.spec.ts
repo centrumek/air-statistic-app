@@ -1,25 +1,27 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { Spectator } from '@ngneat/spectator';
+import { createComponentFactory } from '@ngneat/spectator/jest';
+import { SharedModule } from '../../shared/shared.module';
 import { SearchPageComponent } from './search-page.component';
 
 describe('SearchPageComponent', () => {
+  let spectator: Spectator<SearchPageComponent>;
   let component: SearchPageComponent;
-  let fixture: ComponentFixture<SearchPageComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [SearchPageComponent]
-    })
-      .compileComponents();
+  const createComponent = createComponentFactory<SearchPageComponent>({
+    component: SearchPageComponent,
+    imports: [
+      RouterTestingModule,
+      SharedModule,
+    ],
+    declarations: [SearchPageComponent],
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    spectator = createComponent();
+    component = spectator.component;
   });
 
-  it('should create', () => {
+  it('should create component', () => {
     expect(component).toBeTruthy();
   });
 });

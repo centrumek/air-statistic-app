@@ -1,25 +1,27 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { Spectator } from '@ngneat/spectator';
+import { createComponentFactory } from '@ngneat/spectator/jest';
 import { DetailPageComponent } from './detail-page.component';
+import { SharedModule } from '../../shared/shared.module';
 
 describe('DetailPageComponent', () => {
+  let spectator: Spectator<DetailPageComponent>;
   let component: DetailPageComponent;
-  let fixture: ComponentFixture<DetailPageComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [DetailPageComponent]
-    })
-      .compileComponents();
+  const createComponent = createComponentFactory<DetailPageComponent>({
+    component: DetailPageComponent,
+    imports: [
+      RouterTestingModule,
+      SharedModule,
+    ],
+    declarations: [DetailPageComponent],
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DetailPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    spectator = createComponent();
+    component = spectator.component;
   });
 
-  it('should create', () => {
+  it('should create detail page component', () => {
     expect(component).toBeTruthy();
   });
 });
