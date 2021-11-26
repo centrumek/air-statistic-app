@@ -16,7 +16,7 @@
           <div class="flex flex-wrap">
             <div class="w-full lg:w-3/12 px-4">
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Numer stacji
                 </label>
                 <input type="text" name="stationNumber" id="stationNumber" formControlName="stationNumber"
@@ -33,42 +33,52 @@
             </div>
             <div class="w-full lg:w-3/12 px-4">
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Nazwa stacji
                 </label>
-                <input type="text"
-                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                       value="Kraków Południe">
+                <input type="text" name="stationName" id="stationName" formControlName="stationName"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('stationName')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                <div class="mt-1">
+                  <div *ngFor="let error of errors['stationName']"
+                       class="label-error">
+                    {{error}}
+                  </div>
+                </div>
               </div>
             </div>
             <div class="w-full lg:w-3/12 px-4">
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Kod Stacji
                 </label>
-                <input type="email"
-                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                       value="KR102">
+                <input type="text" name="stationCode" id="stationCode" formControlName="stationCode"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('stationCode')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
               </div>
             </div>
             <div class="w-full lg:w-3/12 px-4">
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Typ stacji
                 </label>
-                <input type="text"
-                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                       value="Lucky">
+                <input type="text" name="stationType" id="stationType" formControlName="stationType"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('stationType')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
               </div>
             </div>
             <div class="w-full lg:w-3/12 px-4">
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Kod międzynarodowy
                 </label>
-                <input type="text"
-                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                       value="PL-KR-102">
+                <input type="text" name="internationalCode" id="internationalCode" formControlName="internationalCode"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('internationalCode')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
               </div>
             </div>
           </div>
@@ -81,40 +91,45 @@
           <div class="flex flex-wrap">
             <div class="w-full lg:w-12/12 px-4">
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Adres
                 </label>
-                <input type="text"
-                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                       value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                <input type="text" name="address" id="address" formControlName="address"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('address')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
               </div>
             </div>
             <div class="w-full lg:w-4/12 px-4">
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Województwo
                 </label>
-                <input type="email"
-                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                       value="Małopolskie">
+                <input type="text" name="voivodeship" id="voivodeship" formControlName="voivodeship"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('voivodeship')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
               </div>
             </div>
             <div class="w-full lg:w-4/12 px-4">
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Miejscowość
                 </label>
-                <input type="text"
-                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                       value="Kraków">
+                <input type="text" name="location" id="location" formControlName="location"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('location')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
               </div>
             </div>
             <div class="w-full lg:w-4/12 px-4">
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Typ Obszaru
                 </label>
-                <input type="text"
+                <input type="text" name="locationType" id="locationType" formControlName="locationType"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('locationType')"
                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                        value="A19">
               </div>
@@ -127,52 +142,50 @@
             Parametry Pomiarowe
           </h6>
           <div class="flex flex-wrap">
-            <div class="w-full lg:w-4/12 px-4">
+            <div class="w-full lg:w-3/12 px-4">
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Mierzone zanieczyszczenia
                 </label>
-                <input type="text"
-                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                       value="Benzen">
+                <input type="text" name="indicator" id="indicator" formControlName="indicator"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('indicator')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
               </div>
             </div>
-            <div class="w-full lg:w-4/12 px-4">
+            <div class="w-full lg:w-3/12 px-4">
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Tryb Pomiaru
                 </label>
-                <input type="text"
-                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                       value="Automatyczny">
+                <input type="text" name="measurementType" id="measurementType" formControlName="measurementType"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('measurementType')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
               </div>
             </div>
-            <div class="w-full lg:w-4/12 px-4">
+            <div class="w-full lg:w-3/12 px-4">
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-                  Strefa
-                </label>
-                <input type="text"
-                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                       value="Centrum">
-              </div>
-            </div>
-            <div class="w-full lg:w-4/12 px-4">
-              <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Data początkowa
                 </label>
-                <input type="text"
+                <input type="text" name="measurementStartDate" id="measurementStartDate"
+                       formControlName="measurementStartDate"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('measurementStartDate')"
                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                        value="10-12-2021">
               </div>
             </div>
-            <div class="w-full lg:w-4/12 px-4">
+            <div class="w-full lg:w-3/12 px-4">
               <div class="relative w-full mb-3">
-                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
                   Data końcowa
                 </label>
-                <input type="text"
+                <input type="text" name="measurementEndDate" id="measurementEndDate"
+                       formControlName="measurementEndDate"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('measurementEndDate')"
                        class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                        value="12-10-2021">
               </div>
@@ -182,7 +195,7 @@
             <div class="w-48 lg:w-12/12 px-4 m-auto">
               <button type="button"
                       class="w-full px-3 py-4 text-white bg-purple rounded-md focus:outline-none flex inline-flex justify-center"
-                      (keyup.enter)="submit()" (click)="submit()">
+                      (keyup.enter)="submit()" (click)="submit()" [disabled]="!form.valid">
                 <span *ngIf="!processing">Szukaj</span>
                 <svg *ngIf="processing" class="animate-spin m-auto h-6 w-5 text-white"
                      xmlns="http://www.w3.org/2000/svg"
@@ -199,56 +212,3 @@
     </div>
   </div>
 </section>
-
-
-<!--<div class="flex items-center min-h-screen dark:bg-gray-900">-->
-<!--<div class="container mx-auto">-->
-<!--<div class="max-w-md mx-auto my-10">-->
-<!--<div class="text-center">-->
-<!--<h1 class="my-3 text-3xl font-semibold text-black dark:text-gray-200">Search</h1>-->
-<!--</div>-->
-<!--<div class="m-7">-->
-<!--<form [formGroup]="form">-->
-<!--<div class="mb-6">-->
-<!--<label for="station" class="block mb-2 text-sm text-gray-400 dark:text-gray-400">Station Name</label>-->
-<!--<input type="station" name="station" id="station" formControlName="station" (keyup.enter)="submit()"-->
-<!--(ngModelChange)="onFormChange('station')"-->
-<!--class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"/>-->
-<!--<div class="mt-1">-->
-<!--<div *ngFor="let error of errors['station']"-->
-<!--class="label-error">-->
-<!--{{error}}-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="mb-6">-->
-<!--<div class="flex justify-between mb-2">-->
-<!--<label for="status" class="text-sm text-gray-400 dark:text-gray-400">Status</label>-->
-<!--</div>-->
-<!--<input type="status" name="status" id="status" formControlName="status" (keyup.enter)="submit()"-->
-<!--class="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"/>-->
-<!--<div class="mt-1">-->
-<!--<div *ngFor="let error of errors['status']"-->
-<!--class="label-error">-->
-<!--{{error}}-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="mb-6">-->
-<!--<button type="button"-->
-<!--class="w-full px-3 py-4 text-white bg-purple rounded-md focus:outline-none flex inline-flex justify-center"-->
-<!--(keyup.enter)="submit()" (click)="submit()">-->
-<!--<span *ngIf="!processing">Search</span>-->
-<!--<svg *ngIf="processing" class="animate-spin m-auto h-6 w-5 text-white" xmlns="http://www.w3.org/2000/svg"-->
-<!--fill="none" viewBox="0 0 24 24">-->
-<!--<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>-->
-<!--<path class="opacity-75" fill="currentColor"-->
-<!--d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>-->
-<!--</svg>-->
-<!--</button>-->
-<!--</div>-->
-<!--</form>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
