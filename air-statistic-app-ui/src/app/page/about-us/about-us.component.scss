@@ -1,0 +1,15 @@
+.card {
+    border-radius: 8px;
+    margin: 20px;
+    border: 1px solid #E6F4F1;
+}
+
+.even {
+    @extend .card;
+    background-color: #E6F4F1;
+}
+
+.odd {
+    @extend .card;
+    background-color: #D8B4FE;
+}
