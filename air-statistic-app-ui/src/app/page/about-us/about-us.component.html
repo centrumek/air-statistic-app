@@ -1,5 +1,7 @@
-<div class="flex justify-center flex-wrap w-screen  ">
-  <div class="w-screen h-96 bg-gray rounded-b-2xl mx-4 flex justify-around items-center">
-    <div>O nas</div>
+<div class="flex justify-center flex-wrap">
+  <div class="bg-gray w-full mx-4 rounded-b-2xl flex justify-around items-center pb-16 mb-4">
+    <div class="cards flex flex-col w-full max-w-5xl mb-2 px-15 sx:px-12 md:px-12">
+      <app-user-box *ngFor="let person of team; let even = even; let odd = odd" [person]="person" [ngClass]="{even: even, odd: odd}" ></app-user-box>
+    </div>
   </div>
 </div>
