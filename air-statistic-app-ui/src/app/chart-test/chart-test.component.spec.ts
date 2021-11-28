@@ -11,10 +11,7 @@ describe('ChartTestComponent', () => {
     component: ChartTestComponent,
     imports: [
       RouterTestingModule,
-      NgApexchartsModule,
-    ],
-    declarations: [
-      ChartTestComponent
+      NgApexchartsModule
     ],
   });
 

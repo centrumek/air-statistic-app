@@ -1,0 +1,214 @@
+<section class=" py-1 bg-blueGray-50">
+  <div class="w-full px-4 mx-auto mt-6">
+    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+      <div class="rounded-t bg-white mb-0 px-6 py-6">
+        <div class="text-center flex justify-between">
+          <h6 class="text-blueGray-700 text-xl font-bold">
+            Formularz
+          </h6>
+        </div>
+      </div>
+      <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+        <form [formGroup]="form">
+          <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            Dane identyfikacyjne
+          </h6>
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-3/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Numer stacji
+                </label>
+                <input type="text" name="stationNumber" id="stationNumber" formControlName="stationNumber"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('stationNumber')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                <div class="mt-1">
+                  <div *ngFor="let error of errors['stationNumber']"
+                       class="label-error">
+                    {{error}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-3/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Nazwa stacji
+                </label>
+                <input type="text" name="stationName" id="stationName" formControlName="stationName"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('stationName')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                <div class="mt-1">
+                  <div *ngFor="let error of errors['stationName']"
+                       class="label-error">
+                    {{error}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="w-full lg:w-3/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Kod Stacji
+                </label>
+                <input type="text" name="stationCode" id="stationCode" formControlName="stationCode"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('stationCode')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+              </div>
+            </div>
+            <div class="w-full lg:w-3/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Typ stacji
+                </label>
+                <input type="text" name="stationType" id="stationType" formControlName="stationType"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('stationType')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+              </div>
+            </div>
+            <div class="w-full lg:w-3/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Kod międzynarodowy
+                </label>
+                <input type="text" name="internationalCode" id="internationalCode" formControlName="internationalCode"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('internationalCode')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+              </div>
+            </div>
+          </div>
+          
+          <hr class="mt-6 border-b-1 border-blueGray-300">
+          
+          <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            Dane lokalizacyjne
+          </h6>
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-12/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Adres
+                </label>
+                <input type="text" name="address" id="address" formControlName="address"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('address')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Województwo
+                </label>
+                <input type="text" name="voivodeship" id="voivodeship" formControlName="voivodeship"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('voivodeship')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Miejscowość
+                </label>
+                <input type="text" name="location" id="location" formControlName="location"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('location')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+              </div>
+            </div>
+            <div class="w-full lg:w-4/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Typ Obszaru
+                </label>
+                <input type="text" name="locationType" id="locationType" formControlName="locationType"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('locationType')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="A19">
+              </div>
+            </div>
+          </div>
+          
+          <hr class="mt-6 border-b-1 border-blueGray-300">
+          
+          <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            Parametry Pomiarowe
+          </h6>
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-3/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Mierzone zanieczyszczenia
+                </label>
+                <input type="text" name="indicator" id="indicator" formControlName="indicator"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('indicator')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+              </div>
+            </div>
+            <div class="w-full lg:w-3/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Tryb Pomiaru
+                </label>
+                <input type="text" name="measurementType" id="measurementType" formControlName="measurementType"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('measurementType')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+              </div>
+            </div>
+            <div class="w-full lg:w-3/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Data początkowa
+                </label>
+                <input type="text" name="measurementStartDate" id="measurementStartDate"
+                       formControlName="measurementStartDate"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('measurementStartDate')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="10-12-2021">
+              </div>
+            </div>
+            <div class="w-full lg:w-3/12 px-4">
+              <div class="relative w-full mb-3">
+                <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">
+                  Data końcowa
+                </label>
+                <input type="text" name="measurementEndDate" id="measurementEndDate"
+                       formControlName="measurementEndDate"
+                       (keyup.enter)="submit()"
+                       (ngModelChange)="onFormChange('measurementEndDate')"
+                       class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                       value="12-10-2021">
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap mt-8">
+            <div class="w-48 lg:w-12/12 px-4 m-auto">
+              <button type="button"
+                      class="w-full px-3 py-4 text-white bg-purple rounded-md focus:outline-none flex inline-flex justify-center"
+                      (keyup.enter)="submit()" (click)="submit()" [disabled]="!form.valid">
+                <span *ngIf="!processing">Szukaj</span>
+                <svg *ngIf="processing" class="animate-spin m-auto h-6 w-5 text-white"
+                     xmlns="http://www.w3.org/2000/svg"
+                     fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
