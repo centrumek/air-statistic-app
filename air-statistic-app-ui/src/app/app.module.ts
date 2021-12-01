@@ -13,7 +13,7 @@ import { BackendInterceptor } from './config/backend.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
   ],
   imports: [
     BrowserModule,

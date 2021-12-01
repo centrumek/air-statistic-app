@@ -1,12 +1,21 @@
-<div class="m-16 flex items-center flex-col">
-  <p>detail page works!</p>
-  <app-chart-test></app-chart-test>
+<div class="bg-gray w-full flex items-center flex-wrap">
+  <!-- <app-chart-test></app-chart-test> -->
+  <button type="button" class="bg-white w-64 mr-20 h-auto rounded-lg mb-4" (click)="navigateToTableDetailPage()">
+		<app-chart-basic></app-chart-basic>
+	</button>
+	<div class="bg-white w-64 h-auto rounded-lg mr-20 mb-4">
+		<app-chart-basic></app-chart-basic>
+  </div>
+	<div class="bg-white w-64 h-auto rounded-lg mr-20 mb-4">
+		<app-chart-column></app-chart-column>
+  </div>
+
   <button type="button"
-          class="bg-blue hover:bg-white hover:text-gray-200 text-white hover:text-black font-bold py-2 px-4 rounded w-48 m-4"
-          (click)="navigateToDiagramDetailPage()">Go to diagram detail page
+		class="bg-blue hover:bg-white hover:text-gray-200 text-white hover:text-black font-bold py-2 px-4 rounded w-48 m-4"
+		(click)="navigateToDiagramDetailPage()">Go to diagram detail page
   </button>
   <button type="button"
-          class="bg-blue hover:bg-white hover:text-gray-200 text-white hover:text-black font-bold py-2 px-4 rounded w-48 m-4"
-          (click)="navigateToTableDetailPage()">Go to table detail page
+		class="bg-blue hover:bg-white hover:text-gray-200 text-white hover:text-black font-bold py-2 px-4 rounded w-48 m-4"
+		(click)="navigateToTableDetailPage()">Go to table detail page
   </button>
 </div>

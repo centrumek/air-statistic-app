@@ -8,6 +8,8 @@ import { BackComponent } from './back/back.component';
 import { ChartTest2Component } from '../chart-test2/chart-test2.component';
 import { UserBoxComponent } from './user-box/user-box.component';
 import { CommonModule } from '@angular/common';
+import { ChartBasicComponent } from '../chart-basic/chart-basic.component';
+import { ChartColumnComponent } from '../chart-column/chart-column.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { CommonModule } from '@angular/common';
     PageNotFoundComponent,
     BackComponent,
     UserBoxComponent,
+    ChartBasicComponent,
+    ChartColumnComponent,
   ],
   imports: [
     NgApexchartsModule,
@@ -27,6 +31,8 @@ import { CommonModule } from '@angular/common';
     TailwindTestComponent,
     ChartTestComponent,
     ChartTest2Component,
+    ChartBasicComponent,
+    ChartColumnComponent,
     AboutUsComponent,
     PageNotFoundComponent,
     BackComponent,
