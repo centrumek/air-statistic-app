@@ -1,15 +1,21 @@
-<div class="bg-gray w-full flex items-center flex-wrap">
+<div class="flex justify-between items-center flex-wrap">
   <!-- <app-chart-test></app-chart-test> -->
-  <button type="button" class="bg-white w-64 mr-20 h-auto rounded-lg mb-4" (click)="navigateToTableDetailPage()">
+  <button type="button" class="chart-card bg-white flex items-center w-64 h-auto rounded-lg mr-20 mb-4" (click)="navigateToTableDetailPage()">
 		<app-chart-basic></app-chart-basic>
 	</button>
-	<div class="bg-white w-64 h-auto rounded-lg mr-20 mb-4">
+	<div class="chart-card bg-white flex items-center w-64 h-auto rounded-lg mr-20 mb-4">
 		<app-chart-basic></app-chart-basic>
   </div>
-	<div class="bg-white w-64 h-auto rounded-lg mr-20 mb-4">
+	<div class="chart-card bg-white flex items-center w-64 h-auto rounded-lg mr-20 mb-4">
 		<app-chart-column></app-chart-column>
   </div>
-
+	<div class="chart-card bg-white flex items-center w-64 h-auto rounded-lg mr-20 mb-4">
+		<app-chart-pie></app-chart-pie>
+	</div>
+	<div class="chart-card bg-white flex items-center w-64 h-auto rounded-lg mr-20 mb-4">
+		<app-chart-bar></app-chart-bar>
+	</div>
+	
   <button type="button"
 		class="bg-blue hover:bg-white hover:text-gray-200 text-white hover:text-black font-bold py-2 px-4 rounded w-48 m-4"
 		(click)="navigateToDiagramDetailPage()">Go to diagram detail page

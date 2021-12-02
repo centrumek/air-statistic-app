@@ -10,6 +10,8 @@ import { UserBoxComponent } from './user-box/user-box.component';
 import { CommonModule } from '@angular/common';
 import { ChartBasicComponent } from '../chart-basic/chart-basic.component';
 import { ChartColumnComponent } from '../chart-column/chart-column.component';
+import { ChartPieComponent } from '../chart-pie/chart-pie.component';
+import { ChartBarComponent } from '../chart-bar/chart-bar.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { ChartColumnComponent } from '../chart-column/chart-column.component';
     UserBoxComponent,
     ChartBasicComponent,
     ChartColumnComponent,
+    ChartPieComponent,
+    ChartBarComponent,
   ],
   imports: [
     NgApexchartsModule,
@@ -33,6 +37,8 @@ import { ChartColumnComponent } from '../chart-column/chart-column.component';
     ChartTest2Component,
     ChartBasicComponent,
     ChartColumnComponent,
+    ChartPieComponent,
+    ChartBarComponent,
     AboutUsComponent,
     PageNotFoundComponent,
     BackComponent,
