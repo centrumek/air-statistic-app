@@ -43,3 +43,14 @@ https://www.xfive.co/blog/testing-angular-faster-jest/
 https://github.com/thymikee/jest-preset-angular
 
 https://timdeschryver.dev/blog/integrate-jest-into-an-angular-application-and-library#adding-jest
+
+## ui - backend - database
+
+Database: 
+
+Go to `air-statistic-app-data\docker` an run `docker compose up`
+
+Backend:
+
+Go to `air-statistic-app-data\api` an run `artisan serve`
+
