@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DetailPageService } from './detail-page.service';
 import { StationMeasurementDto } from '../../model/api/station-measurement.dto';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-detail-page',
@@ -22,6 +23,7 @@ export class DetailPageComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.detailPageService.getMeasurements(this.stationCode)
+      .pipe(takeUntil(this.unsubscribe))
       .subscribe(data => {
         this.measurements = data;
         console.log(data)
