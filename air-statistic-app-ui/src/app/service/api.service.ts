@@ -7,6 +7,9 @@ import { StationMeasurementDto, } from '../model/api/station-measurement.dto';
 import { map } from 'rxjs/operators';
 import { ApiResponse, ApiResponseData } from '../model/api/api-response.interface';
 import { StationDto } from '../model/api/station.dto';
+import { StationSearchResponse } from '../model/api/station-search.response';
+import { StationSearchRequest } from '../model/api/search.request';
+import { VoivodeshipDto } from '../model/api/voivodeship.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +19,13 @@ export class ApiService {
               private apiEndpointProvider: ApiEndpointProviderService) {
   }
 
-  public search(value: SearchRequest): Observable<SearchResponse> {
-    const path = this.apiEndpointProvider.getPath('/search');
+  public searchStations(searchRequest: StationSearchRequest): Observable<ApiResponseData<StationSearchResponse[]>> {
+    const path = this.apiEndpointProvider.getPath('/getStationsAdv');
     const queryParams = new QueryParams();
     const params: HttpParams = queryParams.params;
 
-    return this.httpClient.get<SearchResponse>(path, {params});
+    return this.httpClient.post<ApiResponse<ApiResponseData<StationSearchResponse[]>>>(path, searchRequest, {params})
+      .pipe(map(response => response.data));
   }
 
   public getStationMeasurements(id: string): Observable<StationMeasurementDto[]> {
@@ -43,15 +47,15 @@ export class ApiService {
       .pipe(map(response => response.data));
   }
 
-}
+  public getVoivodeships(): Observable<string[]> {
+    const path = this.apiEndpointProvider.getPath('/voivodeships');
+    const queryParams = new QueryParams();
+    const params: HttpParams = queryParams.params;
 
-interface SearchRequest {
-  station: string;
-  status: string;
-}
-
-interface SearchResponse {
-  status: string;
+    return this.httpClient.get<ApiResponse<VoivodeshipDto[]>>(path, {params})
+      .pipe(map(response => response.data),
+        map(array => array.map(v => v.voivodeship)));
+  }
 }
 
 

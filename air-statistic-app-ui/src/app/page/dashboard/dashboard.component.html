@@ -15,5 +15,10 @@
   </div>
 </div>
 
+<ng-container *ngIf="searchedStations$">
+  {{searchedStations$ | async | json}}
+</ng-container>
+
+
 <!--<app-tailwind-test></app-tailwind-test>-->
 

@@ -12,7 +12,6 @@ export class DetailPageService {
   private measurements = new BehaviorSubject<StationMeasurementDto[]>([]);
 
   constructor(private apiService: ApiService) {
-
   }
 
   public getMeasurements(stationCode: string): Observable<StationMeasurementDto[]> {
