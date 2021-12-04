@@ -4,5 +4,5 @@ export const environment = {
   apiProtocol: 'auto',
   apiHost: 'localhost',
   apiPort: '8080',
-  apiPath: 'airfree/api',
+  apiPath: 'api',
 };

@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   }
 
   public navigateToDetailPage(): void {
-    this.router.navigateByUrl('/dashboard/detail/station/123')
+    this.router.navigateByUrl('/dashboard/detail/station/toppolluted')
   }
 
 }

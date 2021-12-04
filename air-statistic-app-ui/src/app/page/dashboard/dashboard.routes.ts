@@ -11,7 +11,7 @@ export const DASHBOARD_ROUTES: Routes = [
     component: DashboardComponent,
   },
   {
-    path: 'detail/station/:id',
+    path: 'detail/station/:stationCode',
     component: StationDetailPageWrapperComponent,
     children: [
       {

@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter, takeUntil } from 'rxjs/operators';
-import { StorageService } from './service/storage.service';
+import { filter } from 'rxjs/operators';
 import { AppService } from './app.service';
 
 @Component({

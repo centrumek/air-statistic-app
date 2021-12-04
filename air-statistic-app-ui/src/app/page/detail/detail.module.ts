@@ -7,6 +7,7 @@ import { DetailTablePageComponent } from './detail-table-page/detail-table-page.
 import { RouterModule } from '@angular/router';
 import { StationDetailPageWrapperComponent } from './station-detail-page-wrapper/station-detail-page-wrapper.component';
 import { DetailNavigationComponent } from './detail-navigation/detail-navigation.component';
+import { DetailPageService } from './detail-page.service';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { DetailNavigationComponent } from './detail-navigation/detail-navigation
     DetailDiagramPageComponent,
     DetailTablePageComponent,
     StationDetailPageWrapperComponent,
-  ]
+  ],
+  providers: [DetailPageService]
 })
 export class DetailModule {
 }
