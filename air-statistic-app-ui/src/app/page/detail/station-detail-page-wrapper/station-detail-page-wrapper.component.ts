@@ -14,5 +14,12 @@ export class StationDetailPageWrapperComponent {
 
   public toggleModal() {
     this.showModal = !this.showModal;
+
+    const body = document.getElementsByTagName('body')[0];
+    if (this.showModal) {
+      body.style.overflow = "hidden";
+    } else {
+      body.style.overflow = "initial";
+    }
   }
 }

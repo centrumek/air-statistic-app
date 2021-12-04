@@ -13,5 +13,5 @@
     <router-outlet></router-outlet>
   </div>
 </div>
-  <app-info-modal (closeModal)="toggleModal()" *ngIf="showModal" class="overflow-y-auto inset-0 fixed z-50 outline-none focus:outline-none justify-center items-center flex"></app-info-modal>
-<div *ngIf="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+<app-info-modal (closeModal)="toggleModal()" [showModal]="showModal"></app-info-modal>
+
