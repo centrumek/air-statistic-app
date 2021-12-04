@@ -6,6 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./station-detail-page-wrapper.component.scss']
 })
 export class StationDetailPageWrapperComponent {
+  
+  public showModal = false;
+
   constructor() {
+  }
+
+  public toggleModal() {
+    this.showModal = !this.showModal;
   }
 }

@@ -12,6 +12,7 @@ import { ChartBasicComponent } from '../chart-basic/chart-basic.component';
 import { ChartColumnComponent } from '../chart-column/chart-column.component';
 import { ChartPieComponent } from '../chart-pie/chart-pie.component';
 import { ChartBarComponent } from '../chart-bar/chart-bar.component';
+import { InfoModalComponent } from '../info-modal/info-modal.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ChartBarComponent } from '../chart-bar/chart-bar.component';
     ChartColumnComponent,
     ChartPieComponent,
     ChartBarComponent,
+    InfoModalComponent,
   ],
   imports: [
     NgApexchartsModule,
@@ -41,6 +43,7 @@ import { ChartBarComponent } from '../chart-bar/chart-bar.component';
     ChartBarComponent,
     AboutUsComponent,
     PageNotFoundComponent,
+    InfoModalComponent,
     BackComponent,
   ]
 })
