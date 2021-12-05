@@ -24,6 +24,16 @@ export class ApiService {
     return this.httpClient.get<SearchResponse>(path, {params});
   }
 
+  public getStationDetailMeasurements(id: string): Observable<StationMeasurementDto[]> {
+    // const path = `${this.apiEndpointProvider.getPath('/measurements/station')}/${id}`;
+    const path = `${this.apiEndpointProvider.getPath('/station/a')}/${id}`;
+    const queryParams = new QueryParams();
+    const params: HttpParams = queryParams.params;
+
+    return this.httpClient.get<ApiResponse<StationMeasurementDto[]>>(path, {params})
+      .pipe(map(response => response.data));
+  }
+
   public getStationMeasurements(id: string): Observable<StationMeasurementDto[]> {
     // const path = `${this.apiEndpointProvider.getPath('/measurements/station')}/${id}`;
     const path = `${this.apiEndpointProvider.getPath('/measurements')}/${id}`;

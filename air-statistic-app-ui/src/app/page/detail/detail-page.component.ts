@@ -1,11 +1,10 @@
 import { Component, ComponentFactoryResolver, EventEmitter, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DetailPageService } from './detail-page.service';
-import { StationMeasurementDto } from '../../model/api/station-measurement.dto';
+import { StationMeasurement } from '../../model/station-measurement';
 import { takeUntil } from 'rxjs/operators';
 import { componentMap, componentTypes } from './componentMap';
-
-import { chartData } from "./dataMockups";
+import { parameters } from 'src/app/info-modal/data';
 
 @Component({
   selector: 'app-detail-page',
@@ -19,7 +18,7 @@ export class DetailPageComponent implements OnInit, OnDestroy {
 
   private unsubscribe = new EventEmitter<boolean>();
   private stationCode: string;
-  private measurements: StationMeasurementDto[] = [];
+  private measurements: StationMeasurement[] = [];
   private componentList: any[] = [];
 
   constructor(private router: Router,
@@ -30,20 +29,28 @@ export class DetailPageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    // this.detailPageService.getMeasurements(this.stationCode)
-    //   .pipe(takeUntil(this.unsubscribe))
-    //   .subscribe(data => {
-    //     this.measurements = data;
-    //     console.log(data)
-    //   });
-    this.measurements = chartData;
+    this.detailPageService.getMeasurements(this.stationCode)
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(data => {
+        this.measurements = data.map(chart => {
+          return {
+            stand_code: chart.stand_code,
+            indicator_code: chart.indicator_code,
+            indicator: chart.indicator,
+            measurement_values: chart.measurement_values.split(',').map(Number),
+            measurement_dates: chart.measurement_dates.split(','),
+          }
+        })
+        this.loadChartList();
+      });
+    // this.measurements = chartData;
   }
 
-  public ngAfterViewInit() {
-    this.loadChartList();
-  }
+  // public ngAfterViewInit() {
+  //   this.loadChartList();
+  // }
 
-  public navigateToDiagramDetailPage(): void {
+  public navigateToDiagramDetailPage(parametr: string): void {
     this.router.navigate(['diagram'], {relativeTo: this.route});
   }
 
@@ -65,6 +72,7 @@ export class DetailPageComponent implements OnInit, OnDestroy {
       chartsIndex++;
 
       (component?.instance as any).measurements = chart;
+      (component?.instance as any).navigateFunction.subscribe((parametr: string) => this.navigateToDiagramDetailPage(parametr));
 
       component?.changeDetectorRef.detectChanges();
       this.componentList[index] = component;

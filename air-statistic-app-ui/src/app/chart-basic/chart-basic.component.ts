@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 
 import {
   ChartComponent,
@@ -11,9 +11,7 @@ import {
   ApexTitleSubtitle,
   ApexLegend
 } from "ng-apexcharts";
-import { StationMeasurementDto } from '../model/api/station-measurement.dto';
-
-import { series } from "./data";
+import { StationMeasurement } from '../model/station-measurement';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -36,7 +34,9 @@ export type ChartOptions = {
 export class ChartBasicComponent {
   @ViewChild("basic") chart?: ChartComponent;
   public chartOptions!: Partial<ChartOptions> | any;
-  public measurements!: StationMeasurementDto;
+  @Output() navigateFunction: EventEmitter<any> = new EventEmitter();
+
+  public measurements!: StationMeasurement;
 
   constructor() {
     this.measurements = {
@@ -207,5 +207,9 @@ export class ChartBasicComponent {
         show: false,
       },
     };
+  }
+
+  public navigateToDetailPage = () => {
+    this.navigateFunction.next(this.measurements.stand_code);
   }
 }

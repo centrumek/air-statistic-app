@@ -1,4 +1,4 @@
-<div id="pie" class="chart-card bg-white flex items-center w-64 h-auto rounded-lg mr-20 mb-4">
+<button type="button" id="pie" class="chart-card bg-white flex items-center w-64 h-auto rounded-lg mr-20 mb-10" (click)="navigateToDetailPage()">
   <apx-chart
     [series]="chartOptions.series"
     [chart]="chartOptions.chart"
@@ -8,5 +8,5 @@
     [title]="chartOptions.title"
     [subtitle]="chartOptions.subtitle"
   ></apx-chart>
-</div>
+</button>
 

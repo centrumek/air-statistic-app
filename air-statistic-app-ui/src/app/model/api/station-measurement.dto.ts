@@ -5,6 +5,6 @@ export interface StationMeasurementDto {
   stand_code: string;
   indicator_code: string;
   indicator: string;
-  measurement_dates: string[];
-  measurement_values: number[];
+  measurement_dates: string;
+  measurement_values: string;
 }

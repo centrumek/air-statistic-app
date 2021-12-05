@@ -1,6 +1,6 @@
-import { StationMeasurementDto } from "src/app/model/api/station-measurement.dto";
+import { StationMeasurement } from "src/app/model/station-measurement";
 
-export const chartData: StationMeasurementDto[] = [
+export const chartData: StationMeasurement[] = [
   {
     stand_code: "SkKielTargow-BaP(PM10)-24g",
     indicator_code: "BaP(PM10)",

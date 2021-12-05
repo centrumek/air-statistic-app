@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, Output, ViewChild, EventEmitter } from "@angular/core";
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -10,7 +10,7 @@ import {
   ApexXAxis,
   ApexFill
 } from "ng-apexcharts";
-import { StationMeasurementDto } from "../model/api/station-measurement.dto";
+import { StationMeasurement } from "../model/station-measurement";
 
 import { series } from "./data";
 
@@ -33,8 +33,9 @@ export type ChartOptions = {
 export class ChartColumnComponent {
   @ViewChild("column") chart?: ChartComponent;
   public chartOptions!: Partial<ChartOptions> | any;
+  @Output() navigateFunction: EventEmitter<any> = new EventEmitter();
 
-  public measurements!: StationMeasurementDto;
+  public measurements!: StationMeasurement;
 
   constructor() {
     this.measurements = {
@@ -48,8 +49,8 @@ export class ChartColumnComponent {
     this.chartOptions = {
       series: [
         {
-          name: series.parameter_name,
-          data: series.measurement_values_light
+          name: "",
+          data: []
         }
       ],
       grid: {
@@ -80,7 +81,7 @@ export class ChartColumnComponent {
           }
         }
       },
-      labels: series.measurement_dates_light,
+      labels: [],
       dataLabels: {
         enabled: true,
         formatter: function(val: any) {
@@ -143,9 +144,6 @@ export class ChartColumnComponent {
         },
         labels: {
           show: false,
-          formatter: function(val: any) {
-            return val + "%";
-          }
         }
       },
       title: {
@@ -173,8 +171,8 @@ export class ChartColumnComponent {
     this.chartOptions = {
       series: [
         {
-          name: series.parameter_name,
-          data: series.measurement_values_light
+          name: this.measurements.indicator_code,
+          data: this.measurements.measurement_values
         }
       ],
       grid: {
@@ -205,12 +203,9 @@ export class ChartColumnComponent {
           }
         }
       },
-      labels: series.measurement_dates_light,
+      labels: this.measurements.measurement_dates,
       dataLabels: {
         enabled: true,
-        formatter: function(val: any) {
-          return val + "%";
-        },
         offsetY: -20,
         style: {
           fontSize: "12px",
@@ -294,5 +289,8 @@ export class ChartColumnComponent {
     };
   }
 
+  public navigateToDetailPage = () => {
+    this.navigateFunction.next(this.measurements.stand_code);
+  }
 
 }
