@@ -1,9 +1,10 @@
-<div id="chart">
+<div id="column" class="chart-card bg-white flex items-center w-64 h-auto rounded-lg mr-20 mb-4">
     <apx-chart
         [series]="chartOptions.series"
         [grid]="chartOptions.grid"
         [chart]="chartOptions.chart"
         [fill]="chartOptions.fill"
+        [colors]="chartOptions.colors"
         [dataLabels]="chartOptions.dataLabels"
         [labels]="chartOptions.labels"
         [plotOptions]="chartOptions.plotOptions"
@@ -11,5 +12,6 @@
         [xaxis]="chartOptions.xaxis"
         [fill]="chartOptions.fill"
         [title]="chartOptions.title"
+        [subtitle]="chartOptions.subtitle"
     ></apx-chart>
 </div>

@@ -6,6 +6,7 @@ import {
   ApexResponsive,
   ApexChart
 } from "ng-apexcharts";
+import { StationMeasurementDto } from "../model/api/station-measurement.dto";
 
 import { series } from "./data";
 
@@ -22,12 +23,21 @@ export type ChartOptions = {
   styleUrls: ['./chart-pie.component.scss']
 })
 export class ChartPieComponent {
-  @ViewChild("chart") chart?: ChartComponent;
+  @ViewChild("pie") chart?: ChartComponent;
   public chartOptions!: Partial<ChartOptions> | any;
 
+  public measurements!: StationMeasurementDto;
+
   constructor() { 
+    this.measurements = {
+      stand_code: "",
+      indicator_code: "",
+      indicator: "",
+      measurement_values: [],
+      measurement_dates: [],
+    };
     this.chartOptions = {
-      series: series.measurement_values_light ,
+      series: [],
       chart: {
         width: 260,
         height: 450,
@@ -35,7 +45,7 @@ export class ChartPieComponent {
       },
       colors: ['#855CF8', '#E289F2', '#ACB9FF', '#C084FC', '#6643A4'],
       title: {
-        text: "Nikiel w PM10",
+        text: "",
         align: "left",
         style: {
           fontSize: '18px',
@@ -44,7 +54,7 @@ export class ChartPieComponent {
         }
       },
       subtitle: {
-        text: "Mierzone zanieczyszczenie",
+        text: "",
         align: "left",
         style: {
           fontSize: '15px',
@@ -52,7 +62,41 @@ export class ChartPieComponent {
           color: '#607D8B',
         },
       },
-      labels: series.measurement_dates_light,
+      labels: [],
+      legend: {
+        position: "bottom"
+      },
+    };
+  }
+
+  public ngOnInit(): void {
+    this.chartOptions = {
+      series: this.measurements.measurement_values,
+      chart: {
+        width: 260,
+        height: 450,
+        type: "pie"
+      },
+      colors: ['#855CF8', '#E289F2', '#ACB9FF', '#C084FC', '#6643A4'],
+      title: {
+        text: this.measurements.indicator_code,
+        align: "left",
+        style: {
+          fontSize: '18px',
+          fontWeight:  'normal',
+          color: '#263238',
+        }
+      },
+      subtitle: {
+        text: this.measurements.indicator,
+        align: "left",
+        style: {
+          fontSize: '15px',
+          fontWeight:  'normal',
+          color: '#607D8B',
+        },
+      },
+      labels: this.measurements.measurement_dates,
       legend: {
         position: "bottom"
       },
