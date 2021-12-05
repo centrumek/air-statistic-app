@@ -65,8 +65,8 @@ export class ChartBasicComponent {
       },
       series: [
         {
-          name: "STOCK ABC",
-          data: series.monthDataSeries1.prices,
+          name: series.parameter_name,
+          data: series.measurement_values_light,
         }
       ],
       tooltip: {
@@ -96,7 +96,7 @@ export class ChartBasicComponent {
           color: '#607D8B',
         },
       },
-      labels: series.monthDataSeries1.dates,
+      labels: series.measurement_dates_light,
       xaxis: {
         show: false,
         type: "datetime",

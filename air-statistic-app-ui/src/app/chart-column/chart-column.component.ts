@@ -11,6 +11,8 @@ import {
   ApexFill
 } from "ng-apexcharts";
 
+import { series } from "./data";
+
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -35,8 +37,8 @@ export class ChartColumnComponent {
     this.chartOptions = {
       series: [
         {
-          name: "Inflation",
-          data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2]
+          name: series.parameter_name,
+          data: series.measurement_values_light
         }
       ],
       grid: {
@@ -67,6 +69,7 @@ export class ChartColumnComponent {
           }
         }
       },
+      labels: series.measurement_dates_light,
       dataLabels: {
         enabled: true,
         formatter: function(val: any) {

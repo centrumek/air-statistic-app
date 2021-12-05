@@ -7,6 +7,8 @@ import {
   ApexChart
 } from "ng-apexcharts";
 
+import { series } from "./data";
+
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
@@ -25,7 +27,7 @@ export class ChartPieComponent {
 
   constructor() { 
     this.chartOptions = {
-      series: [44, 55, 13, 43, 22],
+      series: series.measurement_values_light ,
       chart: {
         width: 260,
         height: 450,
@@ -50,7 +52,7 @@ export class ChartPieComponent {
           color: '#607D8B',
         },
       },
-      labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+      labels: series.measurement_dates_light,
       legend: {
         position: "bottom"
       },

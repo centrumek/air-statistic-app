@@ -9,6 +9,8 @@ import {
   ApexStroke
 } from "ng-apexcharts";
 
+import { series } from "./data";
+
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -31,8 +33,8 @@ export class ChartBarComponent {
     this.chartOptions = {
       series: [
         {
-          name: "serie1",
-          data: [44, 55, 41, 64, 22, 43, 21]
+          name: series.parameter_name,
+          data: series.measurement_values_light
         },
       ],
       chart: {
@@ -72,7 +74,7 @@ export class ChartBarComponent {
         labels: {
           show: false,
         },
-        categories: [2001, 2002, 2003, 2004, 2005, 2006, 2007]
+        categories: series.measurement_dates_light
       },
       title: {
         text: "Nikiel w PM10",
