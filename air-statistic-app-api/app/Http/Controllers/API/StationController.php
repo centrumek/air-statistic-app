@@ -58,6 +58,40 @@ class StationController extends BaseController
         } else return $this->getCords();
     }
 
+    /**
+     * get all stands for station
+     * @param $station_code
+     * @return \Illuminate\Http\Response
+     */
+    public function getAllStands($station_code)
+    {
+        $stands = DB::table('stations')
+            ->join('stands', 'stations.station_code', '=', 'stands.station_code')
+            ->join('measurements', 'stands.stand_code', '=', 'measurements.stand_code')
+            ->select('stands.stand_code', 'stands.indicator_code', 'stands.indicator')
+            ->selectRaw("array_to_string((array_agg(DISTINCT measurements.measurement_value))[1:6], ', ') measurement_values")
+            ->selectRaw("array_to_string((array_agg(DISTINCT measurements.measurement_date))[1:6], ', ') measurement_dates")
+            ->where('stations.station_code', '=', $station_code)
+            ->groupBy('stands.stand_code', 'stands.indicator_code', 'stands.indicator')
+            ->get();
+//        $stands = DB::table()
+
+/*
+        $stands = DB::table('stations')
+            ->where('stations.station_code', '=', $station_code)
+            ->join('stands', 'stations.station_code', '=', 'stands.station_code')
+            ->join('measurements', 'stands.stand_code', '=', 'measurements.stand_code')
+            ->select('stands.stand_code', 'stands.indicator_code', 'stands.indicator')
+            ->toSql();*/
+
+            if ($stands->isEmpty()) {
+                return $this->sendError('Data not found', 404);
+            }
+
+
+        return $this->sendResponse($stands, 'Data retrieved successfully.');
+    }
+
     public function getAvailableVoivodeship()
     {
         $v = DB::table('stations')

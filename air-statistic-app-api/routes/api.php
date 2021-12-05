@@ -18,6 +18,8 @@ Route::get('/station', [\App\Http\Controllers\API\StationController::class, 'get
 Route::get('/voivodeships', [\App\Http\Controllers\API\StationController::class, 'getAvailableVoivodeship']);
 Route::post('/getStationsAdv', [\App\Http\Controllers\API\StationController::class, 'getStationsAdv']);
 Route::post('/getStationsAdv2', [\App\Http\Controllers\API\StationController::class, 'getStationsAdv2']);
+
+Route::get('/station/a/{station_code}', [\App\Http\Controllers\API\StationController::class, 'getAllStands']);
 Route::get('/station/{station_code}', [\App\Http\Controllers\API\StationController::class, 'getStation']);
 Route::get('/station/getCords', [\App\Http\Controllers\API\StationController::class, 'getCords']);
 
