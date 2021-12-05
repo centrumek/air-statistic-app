@@ -83,10 +83,9 @@ export class SearchComponent extends Form implements OnInit, OnDestroy {
     if (this.form.valid) {
       this.processing = true;
 
-      this.apiService.searchStations(StationSearchService.prepareSearchRequest(this.form.value))
+      this.stationSearchService.searchStations(StationSearchService.prepareSearchRequest(this.form.value))
         .subscribe(response => {
           this.stationSearchService.setSearchedStations(response);
-          console.log(response.data);
           this.processing = false;
         }, () => {
           this.processing = false;

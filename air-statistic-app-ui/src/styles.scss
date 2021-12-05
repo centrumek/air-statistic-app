@@ -2,9 +2,17 @@
 @import '~tailwindcss/components';
 @import '~tailwindcss/utilities';
 @import "~ag-grid-community/dist/styles/ag-grid.css";
-@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+@import "~ag-grid-community/dist/styles/ag-theme-alpine.css";
 
-.ag-header-cell-label {
+.ag-header {
+  border: none !important;
+}
+
+.ag-root-wrapper {
+  border: none !important;
+}
+
+.ag-header-row {
   background: #fefefe;
   border-bottom: 2px #eee solid;
   font-weight: bold;
@@ -14,4 +22,8 @@
   background: #fefefe;
   border-bottom: 2px solid #eee;
   cursor: pointer;
+}
+
+.ag-center-cols-viewport {
+  overflow-x: hidden;
 }

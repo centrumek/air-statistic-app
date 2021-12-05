@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { ColDef, GridApi, GridReadyEvent, RowDoubleClickedEvent } from 'ag-grid-community';
+import { ColDef, GridApi, GridReadyEvent, PaginationChangedEvent, RowDoubleClickedEvent } from 'ag-grid-community';
 import { takeUntil } from 'rxjs/operators';
 import { StationSearchService } from '../../../service/station-search.service';
 import { ApiResponseData } from '../../../model/api/api-response.interface';
@@ -18,6 +18,7 @@ export class SearchResultTableComponent implements OnInit, OnDestroy {
   public searchedStations: ApiResponseData<StationSearchResponse[]> | undefined = undefined;
   public loading = true;
   public error: any;
+  public paginationPageSize = 10;
 
   columnDefs: ColDef[] = [
     {field: 'station_code', headerName: 'Kod Stacji', cellClass: 'navigation-cell'},
@@ -31,6 +32,7 @@ export class SearchResultTableComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
               private stationSearchService: StationSearchService) {
+    this.rowData = [];
   }
 
   public ngOnInit(): void {
@@ -38,10 +40,29 @@ export class SearchResultTableComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(response => {
         if (response != null) {
+          this.paginationPageSize = response.per_page;
+          let rowData = [];
           this.searchedStations = response;
-          this.rowData = response.data;
+
+          for (let i = 0; i < response.total; i++) {
+            rowData.push({
+              indicator: '',
+              measurement_type: '',
+              station_code: '',
+              station_name: '',
+            });
+          }
+
+          for (let i = response.from - 1, j = 0; i < response.to; i++, j++) {
+            rowData[i] = response.data[j];
+          }
+          this.rowData = rowData;
+
           this.loading = false;
+          this.gridApi?.hideOverlay();
           this.gridApi?.sizeColumnsToFit();
+        } else {
+          this.rowData = [];
         }
       }, error => {
         this.error = error;
@@ -61,8 +82,19 @@ export class SearchResultTableComponent implements OnInit, OnDestroy {
     // this.router.navigateByUrl(`/dashboard/detail/station/${event.data.station_code}`);
   }
 
+  onPaginationChanged(event: PaginationChangedEvent) {
+    console.log('onPaginationPageLoaded', event);
+    if (this.gridApi && event.newPage) {
+      this.gridApi.showLoadingOverlay();
+      const currentPage = this.gridApi.paginationGetCurrentPage() + 1;
+      this.stationSearchService.loadStations(currentPage);
+    }
+  }
+
   public ngOnDestroy(): void {
     this.unsubscribe.emit(true);
+    this.stationSearchService.setSearchedStations(null);
+    console.log('DEST');
   }
 
 }

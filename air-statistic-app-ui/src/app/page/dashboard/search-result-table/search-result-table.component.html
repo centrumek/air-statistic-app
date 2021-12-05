@@ -9,8 +9,12 @@
           [rowData]="rowData"
           [columnDefs]="columnDefs"
           [defaultColDef]="{resizable: true}"
+          [pagination]="true"
+          [paginationPageSize]="paginationPageSize"
           (gridReady)="onGridReady($event)"
           (rowDoubleClicked)="onRowDoubleClicked($event)"
+          [suppressPaginationPanel]="false"
+          (paginationChanged)="onPaginationChanged($event)"
         >
         </ag-grid-angular>
       </div>

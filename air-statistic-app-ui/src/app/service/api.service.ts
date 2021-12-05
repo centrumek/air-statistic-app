@@ -19,8 +19,8 @@ export class ApiService {
               private apiEndpointProvider: ApiEndpointProviderService) {
   }
 
-  public searchStations(searchRequest: StationSearchRequest): Observable<ApiResponseData<StationSearchResponse[]>> {
-    const path = this.apiEndpointProvider.getPath('/getStationsAdv');
+  public searchStations(searchRequest: StationSearchRequest, page = 1): Observable<ApiResponseData<StationSearchResponse[]>> {
+    const path = this.apiEndpointProvider.getPath(`/getStationsAdv?page=${page}`);
     const queryParams = new QueryParams();
     const params: HttpParams = queryParams.params;
 
