@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { MenuComponent } from './menu/menu.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BackendInterceptor } from './config/backend.interceptor';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { BackendInterceptor } from './config/backend.interceptor';
     DashboardModule,
     SharedModule,
     HttpClientModule,
+    AgGridModule.withComponents([]),
   ],
   bootstrap: [AppComponent],
   providers: [

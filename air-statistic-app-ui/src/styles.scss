@@ -1,3 +1,17 @@
 @import '~tailwindcss/base';
 @import '~tailwindcss/components';
 @import '~tailwindcss/utilities';
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+
+.ag-header-cell-label {
+  background: #fefefe;
+  border-bottom: 2px #eee solid;
+  font-weight: bold;
+}
+
+.ag-cell {
+  background: #fefefe;
+  border-bottom: 2px solid #eee;
+  cursor: pointer;
+}

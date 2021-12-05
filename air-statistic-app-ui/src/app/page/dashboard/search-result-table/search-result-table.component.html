@@ -1,0 +1,29 @@
+<section class=" py-1 bg-blueGray-50">
+  <div class="w-full px-4 mx-auto mt-6">
+    <div
+      class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0 bg-white">
+      <div class="flex items-center justify-center flex-col px-4 lg:px-10 py-10 pt-0">
+        <ag-grid-angular
+          style="width: 90%; height: 800px; padding: 20px"
+          class="ag-theme-alpine"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          [defaultColDef]="{resizable: true}"
+          (gridReady)="onGridReady($event)"
+          (rowDoubleClicked)="onRowDoubleClicked($event)"
+        >
+        </ag-grid-angular>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
