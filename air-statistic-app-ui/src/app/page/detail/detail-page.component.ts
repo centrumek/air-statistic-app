@@ -43,15 +43,10 @@ export class DetailPageComponent implements OnInit, OnDestroy {
         })
         this.loadChartList();
       });
-    // this.measurements = chartData;
   }
 
-  // public ngAfterViewInit() {
-  //   this.loadChartList();
-  // }
-
   public navigateToDiagramDetailPage(parametr: string): void {
-    this.router.navigate(['diagram'], {relativeTo: this.route});
+    this.router.navigate(['diagram', parametr], {relativeTo: this.route});
   }
 
   public navigateToTableDetailPage(): void {
