@@ -16,7 +16,7 @@ export interface ApiResponseData<T> {
   path: string;
   per_page: number;
   prev_page_url: string;
-  to: string;
+  to: number;
   total: number;
 }
 

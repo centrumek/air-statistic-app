@@ -12,7 +12,6 @@ export class DetailPageService {
   private measurements = new BehaviorSubject<StationMeasurementDto[]>([]);
 
   constructor(private apiService: ApiService) {
-
   }
 
   public getMeasurements(stationCode: string): Observable<StationMeasurementDto[]> {
@@ -22,6 +21,10 @@ export class DetailPageService {
 
     return this.apiService.getStationDetailMeasurements(stationCode)
       .pipe(tap(response => this.measurements.next(response)));
+  }
+
+  public resetMeasurements(): void {
+    this.measurements.next([]);
   }
 
 }
