@@ -3,7 +3,7 @@ import { ColDef, GridApi, GridReadyEvent, PaginationChangedEvent, RowDoubleClick
 import { takeUntil } from 'rxjs/operators';
 import { StationSearchService } from '../../../service/station-search.service';
 import { ApiResponseData } from '../../../model/api/api-response.interface';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StationSearchResponse } from '../../../model/api/station-search.response';
 
 @Component({
@@ -31,7 +31,8 @@ export class SearchResultTableComponent implements OnInit, OnDestroy {
   private gridApi: GridApi | any;
 
   constructor(private router: Router,
-              private stationSearchService: StationSearchService) {
+              private stationSearchService: StationSearchService,
+              private route: ActivatedRoute) {
     this.rowData = [];
   }
 
@@ -78,7 +79,7 @@ export class SearchResultTableComponent implements OnInit, OnDestroy {
   }
 
   public onRowDoubleClicked(event: RowDoubleClickedEvent): void {
-    this.router.navigateByUrl(`/dashboard/detail/station/${event.data.station_code}/diagram/${event.data.stand_code}`);
+    this.router.navigate([`detail/station/${event.data.station_code}/diagram/${event.data.stand_code}`], {relativeTo: this.route});
   }
 
   onPaginationChanged(event: PaginationChangedEvent) {
