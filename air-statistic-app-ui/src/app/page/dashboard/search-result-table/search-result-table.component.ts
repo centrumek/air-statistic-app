@@ -24,7 +24,7 @@ export class SearchResultTableComponent implements OnInit, OnDestroy {
     {field: 'station_code', headerName: 'Kod Stacji', cellClass: 'navigation-cell'},
     {field: 'station_name', headerName: 'Nazwa Stacji'},
     {field: 'indicator', headerName: 'Zanieczyszczenie'},
-    {field: 'measurement_type', headerName: 'Typ pomiaru'}
+    {field: 'stand_code', headerName: 'Kod stanowiska'}
   ];
 
   rowData: StationSearchResponse[] = [];
@@ -47,7 +47,7 @@ export class SearchResultTableComponent implements OnInit, OnDestroy {
           for (let i = 0; i < response.total; i++) {
             rowData.push({
               indicator: '',
-              measurement_type: '',
+              stand_code: '',
               station_code: '',
               station_name: '',
             });
@@ -78,12 +78,10 @@ export class SearchResultTableComponent implements OnInit, OnDestroy {
   }
 
   public onRowDoubleClicked(event: RowDoubleClickedEvent): void {
-    this.router.navigateByUrl('/dashboard/detail/station/toppolluted');
-    // this.router.navigateByUrl(`/dashboard/detail/station/${event.data.station_code}`);
+    this.router.navigateByUrl(`/dashboard/detail/station/${event.data.station_code}/diagram/${event.data.stand_code}`);
   }
 
   onPaginationChanged(event: PaginationChangedEvent) {
-    console.log('onPaginationPageLoaded', event);
     if (this.gridApi && event.newPage) {
       this.gridApi.showLoadingOverlay();
       const currentPage = this.gridApi.paginationGetCurrentPage() + 1;
@@ -94,7 +92,6 @@ export class SearchResultTableComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.unsubscribe.emit(true);
     this.stationSearchService.setSearchedStations(null);
-    console.log('DEST');
   }
 
 }

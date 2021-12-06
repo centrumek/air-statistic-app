@@ -23,13 +23,11 @@ export class DetailTablePageComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.detailPageService.getMeasurements(this.stationCode)
       .pipe(takeUntil(this.unsubscribe))
-      .subscribe(data => {
-        this.measurements = data;
-        console.log(data)
-      });
+      .subscribe(data => this.measurements = data);
   }
 
   public ngOnDestroy(): void {
     this.unsubscribe.emit(true);
+    this.detailPageService.resetMeasurements();
   }
 }
