@@ -34,4 +34,7 @@ export class DetailPageService {
       .pipe(tap(response => this.standMeasurements.next(response)));
   }
 
+  public resetMeasurements(): void {
+    this.measurements.next([]);
+  }
 }

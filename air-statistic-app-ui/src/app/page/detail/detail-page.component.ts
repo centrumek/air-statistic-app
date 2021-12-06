@@ -1,10 +1,9 @@
 import { Component, ComponentFactoryResolver, EventEmitter, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DetailPageService } from './detail-page.service';
-import { StationMeasurement } from '../../model/station-measurement';
 import { takeUntil } from 'rxjs/operators';
+import { StationMeasurement } from '../../model/station-measurement';
 import { componentMap, componentTypes } from './componentMap';
-import { parameters } from 'src/app/info-modal/data';
 
 @Component({
   selector: 'app-detail-page',
@@ -76,5 +75,6 @@ export class DetailPageComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.unsubscribe.emit(true);
+    this.detailPageService.resetMeasurements();
   }
 }
