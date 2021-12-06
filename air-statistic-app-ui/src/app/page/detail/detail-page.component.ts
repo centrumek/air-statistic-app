@@ -49,8 +49,8 @@ export class DetailPageComponent implements OnInit, OnDestroy {
     this.router.navigate(['diagram', parametr], {relativeTo: this.route});
   }
 
-  public navigateToTableDetailPage(): void {
-    this.router.navigate(['table'], {relativeTo: this.route});
+  public navigateToTableDetailPage(parametr: string): void {
+    this.router.navigate(['table', parametr], {relativeTo: this.route});
   }
 
   private createComponent(componentClass: any) {
@@ -67,7 +67,7 @@ export class DetailPageComponent implements OnInit, OnDestroy {
       chartsIndex++;
 
       (component?.instance as any).measurements = chart;
-      (component?.instance as any).navigateFunction.subscribe((parametr: string) => this.navigateToDiagramDetailPage(parametr));
+      (component?.instance as any).navigateFunction.pipe(takeUntil(this.unsubscribe)).subscribe((parametr: string) => this.navigateToDiagramDetailPage(parametr));
 
       component?.changeDetectorRef.detectChanges();
       this.componentList[index] = component;
