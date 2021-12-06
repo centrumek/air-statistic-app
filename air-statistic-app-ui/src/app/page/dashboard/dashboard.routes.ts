@@ -21,9 +21,9 @@ export const DASHBOARD_ROUTES: Routes = [
         }
       },
       {
-        path: 'diagram', component: DetailDiagramPageComponent,
+        path: 'diagram/:standCode', component: DetailDiagramPageComponent,
         data: {
-          backUrl: '/..'
+          backUrl: '/../..'
         }
       },
       {
