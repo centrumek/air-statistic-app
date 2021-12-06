@@ -11,6 +11,7 @@ import { parameters } from "./data";
 export class InfoModalComponent implements OnInit {
 
   @Output() closeModal: EventEmitter<any>= new EventEmitter<any>();
+  @Input() showModal?: boolean;
 
   public parameters;
 

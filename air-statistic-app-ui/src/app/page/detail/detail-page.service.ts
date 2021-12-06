@@ -19,7 +19,7 @@ export class DetailPageService {
       return this.measurements.asObservable();
     }
 
-    return this.apiService.getStationMeasurements(stationCode)
+    return this.apiService.getStationDetailMeasurements(stationCode)
       .pipe(tap(response => this.measurements.next(response)));
   }
 

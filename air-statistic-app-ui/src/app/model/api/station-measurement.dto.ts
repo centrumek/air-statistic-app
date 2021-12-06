@@ -1,9 +1,10 @@
 import { Stand } from './stand.dto';
 
 export interface StationMeasurementDto {
-  id: number;
+  // id: number;
   stand_code: string;
-  measurement_date: string;
-  measurement_value: string;
-  stand: Stand[];
+  indicator_code: string;
+  indicator: string;
+  measurement_dates: string;
+  measurement_values: string;
 }

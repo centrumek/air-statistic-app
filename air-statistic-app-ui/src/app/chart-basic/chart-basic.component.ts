@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 
 import {
   ChartComponent,
@@ -11,8 +11,7 @@ import {
   ApexTitleSubtitle,
   ApexLegend
 } from "ng-apexcharts";
-
-import { series } from "./data";
+import { StationMeasurement } from '../model/station-measurement';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -33,16 +32,30 @@ export type ChartOptions = {
   styleUrls: ['./chart-basic.component.scss']
 })
 export class ChartBasicComponent {
-  @ViewChild("chart") chart?: ChartComponent;
+  @ViewChild("basic") chart?: ChartComponent;
   public chartOptions!: Partial<ChartOptions> | any;
+  @Output() navigateFunction: EventEmitter<any> = new EventEmitter();
+
+  public measurements!: StationMeasurement;
 
   constructor() {
+    this.measurements = {
+      stand_code: "",
+      indicator_code: "",
+      indicator: "",
+      measurement_values: [],
+      measurement_dates: [],
+    };
+
     this.chartOptions = {
       chart: {
         id: "chart-basic",
         type: "area",
         height: 350,
         width: 260,
+        zoom: {
+          enabled: false,
+        },
         toolbar: {
           show: false,
         },
@@ -65,8 +78,8 @@ export class ChartBasicComponent {
       },
       series: [
         {
-          name: "STOCK ABC",
-          data: series.monthDataSeries1.prices,
+          name: '',
+          data: [],
         }
       ],
       tooltip: {
@@ -79,7 +92,7 @@ export class ChartBasicComponent {
         colors: ["#855CF8"]
       },
       title: {
-        text: "Pył zawieszony PM10",
+        text: "",
         align: "left",
         style: {
           fontSize: '18px',
@@ -88,7 +101,7 @@ export class ChartBasicComponent {
         }
       },
       subtitle: {
-        text: "Mierzone zanieczyszczenie",
+        text: "",
         align: "left",
         style: {
           fontSize: '15px',
@@ -96,7 +109,7 @@ export class ChartBasicComponent {
           color: '#607D8B',
         },
       },
-      labels: series.monthDataSeries1.dates,
+      labels: [],
       xaxis: {
         show: false,
         type: "datetime",
@@ -114,4 +127,89 @@ export class ChartBasicComponent {
     };
   }
 
+  public ngOnInit(): void {
+    this.chartOptions = {
+      chart: {
+        id: "chart-basic",
+        type: "area",
+        height: 350,
+        width: 260,
+        zoom: {
+          enabled: false,
+        },
+        toolbar: {
+          show: false,
+        },
+      },
+      colors: ['#C084FC'],
+      stroke: {
+        curve: "straight",
+        width: 3,
+        colors: ['#C084FC'],
+      },
+      grid: {
+        show: false,
+      },
+      dataLabels: {
+        enabled: false
+      },
+      fill: {
+        colors: ["#C084FC"],
+        opacity: 0.9,
+        type: "gradient",
+      },
+      series: [
+        {
+          name: this.measurements.indicator_code,
+          data: this.measurements.measurement_values,
+        }
+      ],
+      tooltip: {
+        enable: true,
+        marker: {
+          show: true,
+        }
+      },
+      markers: {
+        colors: ["#855CF8"]
+      },
+      title: {
+        text: this.measurements.indicator_code,
+        align: "left",
+        style: {
+          fontSize: '18px',
+          fontWeight:  'normal',
+          color: '#263238',
+        }
+      },
+      subtitle: {
+        text: this.measurements.indicator,
+        align: "left",
+        style: {
+          fontSize: '15px',
+          fontWeight:  'normal',
+          color: '#607D8B',
+        },
+      },
+      labels: this.measurements.measurement_dates,
+      xaxis: {
+        show: false,
+        type: "datetime",
+        labels: {
+          show: false,
+        },
+      },
+      yaxis: {
+        show: false,
+        opposite: true
+      },
+      legend: {
+        show: false,
+      },
+    };
+  }
+
+  public navigateToDetailPage = () => {
+    this.navigateFunction.next(this.measurements.stand_code);
+  }
 }

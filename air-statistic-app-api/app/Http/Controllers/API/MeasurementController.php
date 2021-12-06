@@ -12,21 +12,21 @@ class MeasurementController extends BaseController
      * show top 3 polluted locations
      * @return \Illuminate\Http\Response
      */
-    public function getMeasurementsForStation($station_name)
+    public function getMeasurementsForStation($station_code)
     {
         $location = DB::table('measurements')
             ->join('stands', 'measurements.stand_code', '=', 'stands.stand_code')
             ->join('stations', 'stations.station_code', '=', 'stands.station_code')
             ->selectRaw('DISTINCT ON ("measurements"."stand_code") "measurements".*, "stands".*, "stations"."voivodeship"')
-            ->where('stands.station_code', '=', $station_name)
+            ->where('stands.station_code', '=', $station_code)
             ->groupBy('measurements.stand_code', 'measurements.id', 'stands.id', 'stations.id')
             ->get();
 
 
         if($location->isEmpty())
-            return $this->sendError('Station ' . $station_name . ' not found', 404);
+            return $this->sendError('Station ' . $station_code . ' not found', 404);
 
-        return $this->sendResponse($location, 'Station ' . $station_name . ' retrieved successfully.');
+        return $this->sendResponse($location, 'Station ' . $station_code . ' retrieved successfully.');
     }
 
     /**

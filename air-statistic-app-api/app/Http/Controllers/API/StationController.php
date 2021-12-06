@@ -27,18 +27,69 @@ class StationController extends BaseController
     }
 
     /**
+     * show all station coordinates
+     * @return \Illuminate\Http\Response
+     */
+    public function getCords()
+    {
+        $stations = DB::table('stations')->select('station_code', 'station_name', 'wgs84_n', 'wgs84_e')->get();
+
+        if($stations->isEmpty())
+            return $this->sendError('Cords not found', 404);
+
+        return $this->sendResponse($stations, 'Cords retrieved successfully.');
+    }
+
+
+    /**
      * show one station
      * @param $station_code
      * @return \Illuminate\Http\Response
      */
     public function getStation($station_code)
     {
-        $station = DB::table('stations')->where('station_code', '=', $station_code)->get();
+        if(strtolower($station_code) != 'getcords') {
+            $station = DB::table('stations')->where('station_code', '=', $station_code)->get();
 
-        if($station->isEmpty())
-            return $this->sendError('Station not found', 404);
+            if ($station->isEmpty())
+                return $this->sendError('Station not found', 404);
 
-        return $this->sendResponse($station, 'Station retrieved successfully.');
+            return $this->sendResponse($station, 'Station retrieved successfully.');
+        } else return $this->getCords();
+    }
+
+    /**
+     * get all stands for station
+     * @param $station_code
+     * @return \Illuminate\Http\Response
+     */
+    public function getAllStands($station_code)
+    {
+        $stands = DB::table('stations')
+            ->join('stands', 'stations.station_code', '=', 'stands.station_code')
+            ->join('measurements', 'stands.stand_code', '=', 'measurements.stand_code')
+            ->select('stands.stand_code', 'stands.indicator_code', 'stands.indicator')
+            ->selectRaw("array_to_string((array_agg(DISTINCT measurements.measurement_value))[1:6], ', ') measurement_values")
+            ->selectRaw("array_to_string((array_agg(DISTINCT measurements.measurement_date))[1:6], ', ') measurement_dates")
+            ->where('stations.station_code', '=', $station_code)
+            ->groupBy('stands.stand_code', 'stands.indicator_code', 'stands.indicator')
+            ->get();
+//        $stands = DB::table()
+
+/*
+        $stands = DB::table('stations')
+            ->where('stations.station_code', '=', $station_code)
+            ->join('stands', 'stations.station_code', '=', 'stands.station_code')
+            ->join('measurements', 'stands.stand_code', '=', 'measurements.stand_code')
+            ->select('stands.stand_code', 'stands.indicator_code', 'stands.indicator')
+            ->toSql();*/
+
+            if ($stands->isEmpty()) {
+                return $this->sendError('Data not found', 404);
+            }
+
+
+        return $this->sendResponse($stands, 'Data retrieved successfully.');
     }
 
     public function getAvailableVoivodeship()
@@ -78,7 +129,7 @@ class StationController extends BaseController
 
         $results = DB::table('stations')
             ->join('stands', 'stations.station_code', '=', 'stands.station_code')
-            ->select('stations.station_code', 'stations.station_name', 'stands.indicator', 'stands.measurement_type')
+            ->select('stands.stand_code', 'stations.station_code', 'stations.station_name', 'stands.indicator')
             ->where('stations.voivodeship', '=', $request->voivodeship);
 
         if($request->filled('location'))
@@ -119,6 +170,61 @@ class StationController extends BaseController
         return $this->sendResponse($results, 'Station retrieved successfully.');
     }
 
+    /**
+     * show stations - advanced query
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getStationsAdv2(Request $request)
+    {
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'station_type' => 'nullable|string',
+            'location_type' => 'nullable|string',
+            'voivodeship' => 'nullable|string',
+            'location' => 'nullable|string',
+            'station_code' => 'nullable|string',
+        ]);
 
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', $validator->errors());
+        }
+
+        $results = DB::table('stations')
+            ->join('stands', 'stations.station_code', '=', 'stands.station_code')
+            ->select('stands.stand_code', 'stations.station_code', 'stations.station_name', 'stands.indicator');
+
+        if($request->filled('station_type'))
+        {
+            $results = $results->where('stations.station_type', '=', $request->station_type);
+        }
+
+        if($request->filled('location_type'))
+        {
+            $results = $results->where('stations.location_type', '=', $request->location_type);
+        }
+
+        if($request->filled('voivodeship'))
+        {
+            $results = $results->where('stands.voivodeship', '=', $request->voivodeship);
+        }
+
+        if($request->filled('location'))
+        {
+            $results = $results->where('stands.location', '=', $request->location);
+        }
+
+        if($request->filled('station_code'))
+        {
+            $results = $results->where('stands.station_code', '=', $request->station_code);
+        }
+
+        $results = $results->paginate(10);
+
+        if($results->isEmpty())
+            return $this->sendError('Station not found', 404);
+
+        return $this->sendResponse($results, 'Station retrieved successfully.');
+    }
 
 }

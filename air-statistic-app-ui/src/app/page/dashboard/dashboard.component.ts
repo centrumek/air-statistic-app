@@ -5,5 +5,16 @@ import { Component } from '@angular/core';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+
+  constructor(private router: Router) {
+  }
+
+  public ngOnInit(): void {
+  }
+
+  public navigateToDetailPage(): void {
+    this.router.navigateByUrl('/dashboard/detail/station/SkKielTargow')
+  }
+
 }

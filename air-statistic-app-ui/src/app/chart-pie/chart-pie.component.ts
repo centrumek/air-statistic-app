@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, Output, ViewChild, EventEmitter } from "@angular/core";
 import { ChartComponent } from "ng-apexcharts";
 
 import {
@@ -6,6 +6,7 @@ import {
   ApexResponsive,
   ApexChart
 } from "ng-apexcharts";
+import { StationMeasurement } from "../model/station-measurement";
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -20,12 +21,22 @@ export type ChartOptions = {
   styleUrls: ['./chart-pie.component.scss']
 })
 export class ChartPieComponent {
-  @ViewChild("chart") chart?: ChartComponent;
+  @ViewChild("pie") chart?: ChartComponent;
   public chartOptions!: Partial<ChartOptions> | any;
+  @Output() navigateFunction: EventEmitter<any> = new EventEmitter();
+
+  public measurements!: StationMeasurement;
 
   constructor() { 
+    this.measurements = {
+      stand_code: "",
+      indicator_code: "",
+      indicator: "",
+      measurement_values: [],
+      measurement_dates: [],
+    };
     this.chartOptions = {
-      series: [44, 55, 13, 43, 22],
+      series: [],
       chart: {
         width: 260,
         height: 450,
@@ -33,7 +44,7 @@ export class ChartPieComponent {
       },
       colors: ['#855CF8', '#E289F2', '#ACB9FF', '#C084FC', '#6643A4'],
       title: {
-        text: "Nikiel w PM10",
+        text: "",
         align: "left",
         style: {
           fontSize: '18px',
@@ -42,7 +53,7 @@ export class ChartPieComponent {
         }
       },
       subtitle: {
-        text: "Mierzone zanieczyszczenie",
+        text: "",
         align: "left",
         style: {
           fontSize: '15px',
@@ -50,11 +61,48 @@ export class ChartPieComponent {
           color: '#607D8B',
         },
       },
-      labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+      labels: [],
       legend: {
         position: "bottom"
       },
     };
   }
 
+  public ngOnInit(): void {
+    this.chartOptions = {
+      series: this.measurements.measurement_values,
+      chart: {
+        width: 260,
+        height: 450,
+        type: "pie"
+      },
+      colors: ['#855CF8', '#E289F2', '#ACB9FF', '#C084FC', '#6643A4'],
+      title: {
+        text: this.measurements.indicator_code,
+        align: "left",
+        style: {
+          fontSize: '18px',
+          fontWeight:  'normal',
+          color: '#263238',
+        }
+      },
+      subtitle: {
+        text: this.measurements.indicator,
+        align: "left",
+        style: {
+          fontSize: '15px',
+          fontWeight:  'normal',
+          color: '#607D8B',
+        },
+      },
+      labels: this.measurements.measurement_dates,
+      legend: {
+        position: "bottom"
+      },
+    };
+  }
+
+  public navigateToDetailPage = () => {
+    this.navigateFunction.next(this.measurements.stand_code);
+  }
 }
