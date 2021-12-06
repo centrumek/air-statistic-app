@@ -69,8 +69,8 @@ class StationController extends BaseController
             ->join('stands', 'stations.station_code', '=', 'stands.station_code')
             ->join('measurements', 'stands.stand_code', '=', 'measurements.stand_code')
             ->select('stands.stand_code', 'stands.indicator_code', 'stands.indicator')
-            ->selectRaw("array_to_string((array_agg(DISTINCT measurements.measurement_value))[1:6], ', ') measurement_values")
-            ->selectRaw("array_to_string((array_agg(DISTINCT measurements.measurement_date))[1:6], ', ') measurement_dates")
+            ->selectRaw("array_to_string((array_agg(measurements.measurement_value))[1:15], ', ') measurement_values")
+            ->selectRaw("array_to_string((array_agg(DISTINCT measurements.measurement_date))[1:15], ', ') measurement_dates")
             ->where('stations.station_code', '=', $station_code)
             ->groupBy('stands.stand_code', 'stands.indicator_code', 'stands.indicator')
             ->get();
@@ -90,6 +90,39 @@ class StationController extends BaseController
 
 
         return $this->sendResponse($stands, 'Data retrieved successfully.');
+    }
+
+    /**
+     * get all stands for station
+     * @param $stand_code
+     * @return \Illuminate\Http\Response
+     */
+    public function getStand($stand_code)
+    {
+        $stand = DB::table('stands')
+            ->join('measurements', 'stands.stand_code', '=', 'measurements.stand_code')
+            ->select('stands.stand_code', 'stands.indicator_code', 'stands.indicator')
+            ->selectRaw("array_to_string((array_agg(measurements.measurement_value)), ', ') measurement_values")
+            ->selectRaw("array_to_string((array_agg(DISTINCT measurements.measurement_date)), ', ') measurement_dates")
+            ->where('stands.stand_code', '=', $stand_code)
+            ->groupBy('stands.stand_code', 'stands.indicator_code', 'stands.indicator')
+            ->get();
+//        $stands = DB::table()
+
+        /*
+                $stands = DB::table('stations')
+                    ->where('stations.station_code', '=', $station_code)
+                    ->join('stands', 'stations.station_code', '=', 'stands.station_code')
+                    ->join('measurements', 'stands.stand_code', '=', 'measurements.stand_code')
+                    ->select('stands.stand_code', 'stands.indicator_code', 'stands.indicator')
+                    ->toSql();*/
+
+        if ($stand->isEmpty()) {
+            return $this->sendError('Data not found', 404);
+        }
+
+
+        return $this->sendResponse($stand, 'Data retrieved successfully.');
     }
 
     public function getAvailableVoivodeship()

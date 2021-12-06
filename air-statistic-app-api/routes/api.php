@@ -20,6 +20,7 @@ Route::post('/getStationsAdv', [\App\Http\Controllers\API\StationController::cla
 Route::post('/getStationsAdv2', [\App\Http\Controllers\API\StationController::class, 'getStationsAdv2']);
 
 Route::get('/station/a/{station_code}', [\App\Http\Controllers\API\StationController::class, 'getAllStands']);
+Route::get('/stand/{stand_code}', [\App\Http\Controllers\API\StationController::class, 'getStand']);
 Route::get('/station/{station_code}', [\App\Http\Controllers\API\StationController::class, 'getStation']);
 Route::get('/station/getCords', [\App\Http\Controllers\API\StationController::class, 'getCords']);
 
