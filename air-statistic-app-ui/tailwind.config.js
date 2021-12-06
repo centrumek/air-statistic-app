@@ -27,8 +27,10 @@ module.exports = {
       yellow: '#FDE047',
       blue: '#12CCE5',
       purple: '#A855F7',
+      'purple-200': '#E9D5FF',
       green: '#86EFAC',
       'green:200': '#E6F4F1',
+      'text-black': colors.black
     }
   }
 };

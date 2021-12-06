@@ -1,0 +1,15 @@
+<button type="button" id="bar" class="chart-card bg-white flex items-center w-64 h-auto rounded-lg mr-20 mb-10" (click)="navigateToDetailPage()">
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [dataLabels]="chartOptions.dataLabels"
+    [plotOptions]="chartOptions.plotOptions"
+    [xaxis]="chartOptions.xaxis"
+    [yaxis]="chartOptions.yaxis"
+    [stroke]="chartOptions.stroke"
+    [grid]="chartOptions.grid"
+    [colors]="chartOptions.colors"
+    [title]="chartOptions.title"
+    [subtitle]="chartOptions.subtitle"
+  ></apx-chart>
+</button>

@@ -54,3 +54,30 @@ Backend:
 
 Go to `air-statistic-app-data\api` an run `artisan serve`
 
+## Endpoints
+
+GET:
+/api/station - get all stations
+/api/station/{station_code} - get one station
+
+/api/measurements/toppolluted - dashboard data - most polluted stand (DashBoardPage)
+/api/measurements/leastpolluted - dashboard data - least polluted stand (DashBoardPage)
+
+/api/measurements/archive/{stand_code}
+/api/measurements/station/{station_name} - measurements for station (DetailPage)
+
+/api/voivodeships  - list of voivodeship 
+
+POST:
+/api/getStationsAdv (SearchPage)
+
+expected data: (only voivodeship is required)
+{
+    "voivodeship": "DOLNOLĽSKIE", 
+    "location": "",
+    "adress": "",
+    "indicator": "",
+    "measurement_type": "",
+    "start_date": "",
+    "close_date": "2003-12-31"
+}

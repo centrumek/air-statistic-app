@@ -72,15 +72,24 @@ export class SearchComponent extends Form {
     super.submit();
     if (this.form.valid) {
       this.processing = true;
-      setTimeout(() => {
-        this.apiService.search(this.form.value)
-          .subscribe(response => {
-            // TODO search result action
-            this.processing = false;
-          }, () => {
-            this.processing = false;
-          })
-      }, 1000)
+
+      this.apiService.getStations()
+        .subscribe(stations => {
+          console.log(stations);
+          this.processing = false;
+        }, () => {
+          this.processing = false;
+        })
+
+      // setTimeout(() => {
+      //   this.apiService.search(this.form.value)
+      //     .subscribe(response => {
+      //       // TODO search result action
+      //       this.processing = false;
+      //     }, () => {
+      //       this.processing = false;
+      //     })
+      // }, 1000)
     }
   }
 

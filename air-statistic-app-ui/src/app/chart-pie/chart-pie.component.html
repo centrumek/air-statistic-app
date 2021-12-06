@@ -1,0 +1,12 @@
+<button type="button" id="pie" class="chart-card bg-white flex items-center w-64 h-auto rounded-lg mr-20 mb-10" (click)="navigateToDetailPage()">
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [colors]="chartOptions.colors"
+    [labels]="chartOptions.labels"
+    [legend]="chartOptions.legend"
+    [title]="chartOptions.title"
+    [subtitle]="chartOptions.subtitle"
+  ></apx-chart>
+</button>
+
