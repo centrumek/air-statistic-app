@@ -7,6 +7,7 @@ import { StationMeasurementDto, } from '../model/api/station-measurement.dto';
 import { map } from 'rxjs/operators';
 import { ApiResponse, ApiResponseData } from '../model/api/api-response.interface';
 import { StationDto } from '../model/api/station.dto';
+import { StandMeasurementDto } from '../model/api/stand-measurement.dto';
 import { StationSearchResponse } from '../model/api/station-search.response';
 import { StationSearchRequest } from '../model/api/search.request';
 import { VoivodeshipDto } from '../model/api/voivodeship.dto';
@@ -54,6 +55,15 @@ export class ApiService {
     const params: HttpParams = queryParams.params;
 
     return this.httpClient.get<ApiResponse<ApiResponseData<StationDto[]>>>(path, {params})
+      .pipe(map(response => response.data));
+  }
+
+  public getStandMeasurements(id: string): Observable<StandMeasurementDto> {
+    const path = `${this.apiEndpointProvider.getPath('/stand')}/${id}`;
+    const queryParams = new QueryParams();
+    const params: HttpParams = queryParams.params;
+
+    return this.httpClient.get<ApiResponse<StandMeasurementDto>>(path, {params})
       .pipe(map(response => response.data));
   }
 

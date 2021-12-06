@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { DetailPageService } from '../detail-page.service';
 import { ActivatedRoute } from '@angular/router';
-import { StationMeasurementDto } from '../../../model/api/station-measurement.dto';
 import { takeUntil } from 'rxjs/operators';
+import { StandMeasurementDto } from 'src/app/model/api/stand-measurement.dto';
 
 @Component({
   selector: 'app-detail-table-page',
@@ -11,23 +11,24 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class DetailTablePageComponent implements OnInit, OnDestroy {
 
+  public standCode: string;
+  private stand?: StandMeasurementDto | null;
   private unsubscribe = new EventEmitter<boolean>();
-  private stationCode: string;
-  private measurements: StationMeasurementDto[] = [];
 
   constructor(private detailPageService: DetailPageService,
               private route: ActivatedRoute,) {
-    this.stationCode = this.route.snapshot.params['stationCode'];
+          this.standCode = this.route.snapshot.params['standCode'];
   }
 
   public ngOnInit(): void {
-    this.detailPageService.getMeasurements(this.stationCode)
+    this.detailPageService.getStandMeasurements(this.standCode)
       .pipe(takeUntil(this.unsubscribe))
-      .subscribe(data => this.measurements = data);
+      .subscribe(data => {
+        this.stand = data;
+      });
   }
 
   public ngOnDestroy(): void {
     this.unsubscribe.emit(true);
-    this.detailPageService.resetMeasurements();
   }
 }
