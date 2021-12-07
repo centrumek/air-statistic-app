@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { StationSearchService } from '../../service/station-search.service';
 import { AgGridModule } from 'ag-grid-angular';
 import { SearchResultTableComponent } from './search-result-table/search-result-table.component';
+import { PollutionDiagramComponent } from './top-polluted/pollution-diagram.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { SearchResultTableComponent } from './search-result-table/search-result-
     DashboardComponent,
     SearchComponent,
     SearchResultTableComponent,
+    PollutionDiagramComponent,
   ],
   imports: [
     CommonModule,
