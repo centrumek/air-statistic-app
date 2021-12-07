@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\Measurement;
+use App\Models\StationMeasurements;
 use Illuminate\Support\Facades\DB;
 
 class MeasurementController extends BaseController
@@ -30,31 +31,117 @@ class MeasurementController extends BaseController
     }
 
     /**
-     * show top 3 polluted locations
+     * show top polluted locations
      * @return \Illuminate\Http\Response
      */
     public function getTopPollutedLocations()
     {
-        $location = Measurement::with('stand')->orderByDesc('measurement_value')->limit(3)->get();
+        $stand_code = DB::table('measurements')
+            ->select('stand_code', 'measurement_value')
+            ->whereRaw("measurement_date >= (SELECT MAX(measurement_date)  - INTERVAL '7 days' FROM measurements) AND stand_code LIKE '%PM10%'")
+            ->orderBy('measurement_value', 'desc')
+            ->limit(1)
+            ->distinct()
+            ->get();
 
-        if($location->isEmpty())
-            return $this->sendError('Stations not found', 404);
+        $measurements = DB::table('measurements')
+            ->select('measurement_value')
+            ->whereRaw("measurement_date >= (SELECT MAX(measurement_date)  - INTERVAL '7 days' FROM measurements)")
+            ->where('stand_code', '=', $stand_code[0]->stand_code)
+            ->orderBy('measurement_value', 'desc')
+            ->get();
 
-        return $this->sendResponse($location, 'Station retrieved successfully.');
+        $station = DB::table('stands')
+            ->join('stations', 'stations.station_code', '=', 'stands.station_code')
+            ->where('stand_code', '=', $stand_code[0]->stand_code)
+            ->get();
+
+        $stationmeasurement = new StationMeasurements();
+        $stationmeasurement->values = $measurements->map(function($value) {
+            return $value->measurement_value;
+        });
+
+        $stationmeasurement->station = $station;
+
+        return $this->sendResponse($stationmeasurement, 'Top polluted stand retrieved successfully.');
     }
 
     /**
-     * show least 3 polluted locations
+     * show least polluted locations
      * @return \Illuminate\Http\Response
      */
     public function getTopClearLocations()
     {
-        $location = Measurement::with('stand')->orderBy('measurement_value', 'asc')->limit(3)->get();
+        $stand_code = DB::table('measurements')
+            ->select('stand_code', 'measurement_value')
+            ->whereRaw("measurement_date >= (SELECT MAX(measurement_date)  - INTERVAL '7 days' FROM measurements) AND stand_code LIKE '%PM10%'")
+            ->orderBy('measurement_value', 'asc')
+            ->limit(1)
+            ->distinct()
+            ->get();
 
-        if($location->isEmpty())
-            return $this->sendError('Stations not found', 404);
+        $measurements = DB::table('measurements')
+            ->select('measurement_value')
+            ->whereRaw("measurement_date >= (SELECT MAX(measurement_date)  - INTERVAL '7 days' FROM measurements)")
+            ->where('stand_code', '=', $stand_code[0]->stand_code)
+            ->orderBy('measurement_value', 'asc')
+            ->get();
 
-        return $this->sendResponse($location, 'Station retrieved successfully.');
+        $station = DB::table('stands')
+            ->join('stations', 'stations.station_code', '=', 'stands.station_code')
+            ->where('stand_code', '=', $stand_code[0]->stand_code)
+            ->get();
+
+        $stationmeasurement = new StationMeasurements();
+        $stationmeasurement->values = $measurements->map(function($value) {
+            return $value->measurement_value;
+        });
+
+        $stationmeasurement->station = $station;
+
+        return $this->sendResponse($stationmeasurement, 'Top polluted stand retrieved successfully.');
+    }
+
+    /**
+     * show avg polluted locations
+     * @return \Illuminate\Http\Response
+     */
+    public function getAvgPollutedStation()
+    {
+        $stand_code = DB::select(DB::raw("SELECT * FROM (SELECT stand_code, measurement_value, row_number() over () as rowid FROM (
+                    SELECT DISTINCT stand_code, measurement_value
+                    FROM measurements
+                    WHERE measurement_date >= (SELECT MAX(measurement_date)  - INTERVAL '7 days' FROM measurements)
+                    AND stand_code LIKE '%PM10%'
+                    order by measurement_value desc) AS XYZ) AS ABC where rowid =
+
+
+                    (SELECT COUNT(*)/2 as total FROM (SELECT DISTINCT stand_code, measurement_value
+                    FROM measurements
+                    WHERE measurement_date >= (SELECT MAX(measurement_date)  - INTERVAL '7 days' FROM measurements)
+                    AND stand_code LIKE '%PM10%'
+                    order by measurement_value desc) as XYZ);"));
+
+        $measurements = DB::table('measurements')
+            ->select('measurement_value')
+            ->whereRaw("measurement_date >= (SELECT MAX(measurement_date)  - INTERVAL '7 days' FROM measurements)")
+            ->where('stand_code', '=', $stand_code[0]->stand_code)
+            ->orderBy('measurement_value', 'asc')
+            ->get();
+
+        $station = DB::table('stands')
+            ->join('stations', 'stations.station_code', '=', 'stands.station_code')
+            ->where('stand_code', '=', $stand_code[0]->stand_code)
+            ->get();
+
+        $stationmeasurement = new StationMeasurements();
+        $stationmeasurement->values = $measurements->map(function($value) {
+            return $value->measurement_value;
+        });
+
+        $stationmeasurement->station = $station;
+
+        return $this->sendResponse($stationmeasurement, 'Top polluted stand retrieved successfully.');
     }
 
     /**
