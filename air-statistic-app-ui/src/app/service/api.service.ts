@@ -58,12 +58,12 @@ export class ApiService {
       .pipe(map(response => response.data));
   }
 
-  public getStandMeasurements(id: string): Observable<StandMeasurementDto> {
+  public getStandMeasurements(id: string): Observable<StandMeasurementDto[]> {
     const path = `${this.apiEndpointProvider.getPath('/stand')}/${id}`;
     const queryParams = new QueryParams();
     const params: HttpParams = queryParams.params;
 
-    return this.httpClient.get<ApiResponse<StandMeasurementDto>>(path, {params})
+    return this.httpClient.get<ApiResponse<StandMeasurementDto[]>>(path, {params})
       .pipe(map(response => response.data));
   }
 

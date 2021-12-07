@@ -13,6 +13,8 @@ import { ChartColumnComponent } from '../chart-column/chart-column.component';
 import { ChartPieComponent } from '../chart-pie/chart-pie.component';
 import { ChartBarComponent } from '../chart-bar/chart-bar.component';
 import { InfoModalComponent } from '../info-modal/info-modal.component';
+import { ChartDiagramComponent } from '../chart-diagram/chart-diagram.component';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { InfoModalComponent } from '../info-modal/info-modal.component';
     ChartColumnComponent,
     ChartPieComponent,
     ChartBarComponent,
+    ChartDiagramComponent,
     InfoModalComponent,
   ],
   imports: [
@@ -45,6 +48,7 @@ import { InfoModalComponent } from '../info-modal/info-modal.component';
     PageNotFoundComponent,
     InfoModalComponent,
     BackComponent,
+    ChartDiagramComponent,
   ]
 })
 export class SharedModule {
