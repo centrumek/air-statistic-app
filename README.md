@@ -109,7 +109,7 @@ e3 ||..|{ e4
 ## Technology stack
 
 ### Database
-- PostgreSQL
-- pgAdmin
-- Python - data transforming scripts 
+- PostgreSQL - 14.0
+- pgAdmin - 6.2
+- Python 3.9- data transforming scripts 
    
