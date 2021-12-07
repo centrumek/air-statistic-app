@@ -3,6 +3,9 @@ import { Form } from '../../../config/form/form.model';
 import { Validators } from '@angular/forms';
 import { ApiService } from '../../../service/api.service';
 import { StationSearchService } from '../../../service/station-search.service';
+import { AppService } from '../../../app.service';
+import { take, takeUntil } from 'rxjs/operators';
+import { ObjectUtils } from '../../../utils/object.utils';
 
 @Component({
   selector: 'app-search',
@@ -17,7 +20,8 @@ export class SearchComponent extends Form implements OnInit, OnDestroy {
   public voivodeships: string[] = [];
 
   constructor(private apiService: ApiService,
-              private stationSearchService: StationSearchService) {
+              private stationSearchService: StationSearchService,
+              private appService: AppService) {
     super({
       elements: {
         stationNumber: {
@@ -74,8 +78,23 @@ export class SearchComponent extends Form implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.apiService.getVoivodeships()
-      .pipe()
-      .subscribe(response => this.voivodeships = response);
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(response => {
+        this.voivodeships = response;
+        this.appService.getFormValues()
+          .pipe(take(1))
+          .subscribe(value => {
+            if (ObjectUtils.isDefined(value)) {
+              this.form.setValue(value);
+              this.submit();
+            }
+          });
+      });
+  }
+
+  public onFormChange(name: string): void {
+    super.onFormChange(name);
+    this.appService.setFormValues(this.form.value);
   }
 
   public submit(): void {
