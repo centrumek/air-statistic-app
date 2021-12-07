@@ -14,7 +14,164 @@ use Agile methodology, prioritize tasks or make new friends being a team.
 
 ## Project Vision
 
+Nowadays, we can often experience air pollution, especially in cities.
+We are struggling with it each year despite the fact that lots of effort was already put in.
+The vision of this project focuses on air pollution data visualisation coming from a set of stations to compare if we go in the right direction as a society.
+
+### Functionalities
+ 
+1. Dashboard View - Cities widgets, stations search console with basic filter options, results pagination.
+2. Detailed View - All stands with basic measurement plots for a certain station.
+3. Detailed Diagram View - Advanced measurement plot of a certain stand.
+4. Detailed Table View - Advanced measurement table of a certain stand.
+5. Stations Search Console View - Multiple filter options, results pagination.
+6. Map View - Interactive visualisation of all stations with basic filter options.
+7. Stations Statistics View - Results pagination with station code, stand, measurement type, status, age etc.
+8. Stands Information View - Simple, meaningful description of all stands.
+9. About Us View - Information about project contributors.
+
+### Use Case Diagrams
+
+```puml
+left to right direction
+
+actor "Guest" as g1
+
+rectangle "Dashboard View" as r1 {
+    (Search Button) as sb
+    (Click Action) as ca
+    (View Action) as va
+    (Cities Widgets) as cw
+    (Stations Search Console View) as sscv
+    (Detailed View) as dv
+    (About Us View) as auv
+    (Map View) as mv
+    (Basic Filter Options) as bfo
+
+    g1 -- sb
+    sb ..> sscv : include
+
+    g1 -- ca
+    ca ..> auv : extends  
+    ca ..> mv : extends 
+
+    g1 -- va
+    va ..> cw : include
+    va ..> sscv : include
+
+    bfo .> sscv : extends
+    sscv ...> dv : extends
+}
+```
+
+```puml
+left to right direction
+
+actor "Guest" as g1
+
+rectangle "Detailed View" as r1 {
+    (Click Action) as ca
+    (View Action) as va
+    (Station Masurement Plots) as smp
+    (Dashboard View) as dv
+    (About Us View) as auv
+    (Map View) as mv
+    (Detailed Diagram/Table View) as ddtv
+
+    g1 -- ca
+    ca ..> auv : extends  
+    ca ..> mv : extends
+    ca ..> dv : extends
+    ca ..> smp : extends
+    
+    g1 -- va
+    va ..> smp : include
+
+    smp ...> ddtv : extends
+}
+```
+
+```puml
+left to right direction
+
+actor "Guest" as g1
+
+rectangle "Stations Statistics View" as r1 {
+    (Click Action) as ca
+    (View Action) as va
+    (Pagination Results) as pr
+    (Sorting Options) as fo
+    (About Us View) as auv
+    (Map View) as mv
+    (Dashboard View) as dv
+
+    g1 -- ca
+    ca ..> auv : extends  
+    ca ..> mv : extends
+    ca ..> dv : extends
+    ca ..> fo : extends
+    
+    g1 -- va
+    va ..> pr : include
+}
+```
+
+```puml
+left to right direction
+
+actor "Guest" as g1
+
+rectangle "Map View" as r1 {
+    (Click Action) as ca
+    (View Action) as va
+    (Search Button) as sb
+    (Stations Search Console View) as sscv
+    (Basic Filter Options) as bfo
+    (About Us View) as auv
+    (Dashboard View) as dv
+    (Interactive Map) as im
+    (Detailed View) as dev
+
+    g1 -- ca
+    ca ..> auv : extends  
+    ca ..> dv : extends
+    ca ..> im : extends
+    
+    g1 -- va
+    va ..> im : include
+
+    g1 -- sb
+    sb ..> sscv : include
+
+    im ...> dev : extends
+    sscv ...> dev : extends
+    bfo ..> sscv : extends
+}
+```
+
+```puml
+left to right direction
+
+actor "Guest" as g1
+
+rectangle "About Us View" as r1 {
+    (Click Action) as ca
+    (View Action) as va
+    (Map View) as mv
+    (Dashboard View) as dv
+    (Owners List) as ol
+
+    g1 -- ca
+    ca ..> mv : extends
+    ca ..> dv : extends
+    
+    g1 -- va
+    va ..> ol : include
+}
+```
+
 ### Architecture Diagram
+
 ```puml
 left to right direction
 
@@ -31,7 +188,7 @@ cloud Network {
     }
     
     node c3 <<Docker>> as "container"{
-        database db <<PostgreSQL>> as "air-statistic-app-db" {
+        database db <<PostgreSQL>> as "air-statistic-app-data" {
         }
     }
 
@@ -45,12 +202,6 @@ cloud Network {
 
 ```puml
 left to right direction
-
-entity "station_codes" as e1 {
-    id <<PK>> \t\t\t\t\t\t Integer
-    old_station_code <<U, NN>> \t\t Text
-    station_code <<FK>> \t\t\t Text
-}
 
 entity "stations" as e2 {
     id <<PK>> \t\t\t\t\t\t Integer
@@ -88,28 +239,18 @@ entity "measurement" as e4 {
     measurement_value \t\t\t Real
 }
 
-e1 ||..|| e2
 e2 ||..|{ e3
 e3 ||..|{ e4
 
 ```
 
-### Functionalities
- 
-1. Dashboard View - Cities widgets, stations search console with basic filter options, results pagination.
-2. Detail View - All stands with basic measurement plots for a certain station.
-3. Detail Diagram View - Advanced measurement plot of a certain stand.
-4. Detail Table View - Advanced measurement table of a certain stand.
-5. Stations Search Console View - Multiple filter options, results pagination.
-6. Map View - Interactive visualisation of all stations with basic filter options.
-7. Stations Statistics View - Results pagination with station code, stand, measurement type, status, age etc.
-8. Stands Information View - Simple, meaningful description of all stands.
-9. About Us View - Information about project contributors.
-
 ## Technology stack
 
+### Frontend
+
+### Backend
+
 ### Database
-- PostgreSQL - 14.0
-- pgAdmin - 6.2
-- Python 3.9 - data transforming scripts 
-   
+- **PostgreSQL 14.0** - Open source, relational database management system.
+- **pgAdmin 6.2** - Open source administration and development platform for PostgreSQL.
+- **Python 3.9** - Used for data transformation coming from GIOŚ.
