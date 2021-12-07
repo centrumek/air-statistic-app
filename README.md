@@ -111,5 +111,5 @@ e3 ||..|{ e4
 ### Database
 - PostgreSQL - 14.0
 - pgAdmin - 6.2
-- Python 3.9- data transforming scripts 
+- Python 3.9 - data transforming scripts 
    
