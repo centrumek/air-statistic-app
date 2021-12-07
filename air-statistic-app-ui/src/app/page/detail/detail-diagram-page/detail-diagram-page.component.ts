@@ -13,7 +13,7 @@ export class DetailDiagramPageComponent implements OnInit {
 
   public standCode: string;
   public standMeasurementArray?: StandMeasurement[] | null;
-  public stand?: StandMeasurement | null;
+  public stand?: StandMeasurement;
   private unsubscribe = new EventEmitter<boolean>();
 
   constructor(private route: ActivatedRoute, private detailPageService: DetailPageService) {
