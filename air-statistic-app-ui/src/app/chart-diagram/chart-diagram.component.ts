@@ -81,14 +81,11 @@ export class ChartDiagramComponent {
     };
   }
 
-
   public updateChart(): void {
-    console.log(this.measurements);
     this.chartOptions = {
       series: [{
         name: this.measurements.indicator_code,
         data: this.measurements.measurement_values,
-        
       }],
       chart: {
         height: 500,
