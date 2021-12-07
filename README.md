@@ -108,4 +108,8 @@ e3 ||..|{ e4
 
 ## Technology stack
 
-- Tool x.y.z
+### Database
+- PostgreSQL
+- pgAdmin
+- Python - data transforming scripts 
+   
