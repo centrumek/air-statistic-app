@@ -15,6 +15,7 @@ import { ChartBarComponent } from '../chart-bar/chart-bar.component';
 import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { PollutionStationComponent } from './top-polluted-station/pollution-station.component';
 import { StationChartColumnComponent } from '../station-chart-column/station-chart-column.component';
+import { MapComponent } from '../map/map.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { StationChartColumnComponent } from '../station-chart-column/station-cha
     InfoModalComponent,
     PollutionStationComponent,
     StationChartColumnComponent,
+    MapComponent,
   ],
   imports: [
     NgApexchartsModule,
@@ -51,6 +53,7 @@ import { StationChartColumnComponent } from '../station-chart-column/station-cha
     BackComponent,
     PollutionStationComponent,
     StationChartColumnComponent,
+    MapComponent,
   ]
 })
 export class SharedModule {
