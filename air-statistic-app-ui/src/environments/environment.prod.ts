@@ -3,6 +3,6 @@ export const environment = {
   mockedRestApi: false,
   apiProtocol: 'auto',
   apiHost: 'localhost',
-  apiPort: '8080',
+  apiPort: '8000',
   apiPath: 'api',
 };
