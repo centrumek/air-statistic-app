@@ -31,3 +31,25 @@ services:
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
       - 5050:80
+  app:
+    build:
+      args:
+        user: sammy
+        uid: 1000
+      context: ./air-statistic-app-api
+      dockerfile: Dockerfile
+    image: travellist
+    container_name: api
+    restart: unless-stopped
+    working_dir: /var/www/
+#    volumes:
+#      - ./air-statistic-app-api:/var/www
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./air-statistic-app-api:/var/www
+      - ./air-statistic-app-api/docker-compose/nginx:/etc/nginx/conf.d/
