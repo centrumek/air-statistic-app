@@ -31,3 +31,16 @@ services:
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
       - 5050:80
+  app:
+    image: php:8.0-fpm
+    build:
+#      args:
+#        user: sammy
+#        uid: 1000
+      context: ./air-statistic-app-api
+      dockerfile: Dockerfile
+    container_name: api
+    restart: unless-stopped
+    working_dir: /www/
+    ports:
+      - 8000:80
