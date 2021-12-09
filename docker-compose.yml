@@ -34,9 +34,6 @@ services:
   app:
     image: php:8.0-fpm
     build:
-#      args:
-#        user: sammy
-#        uid: 1000
       context: ./air-statistic-app-api
       dockerfile: Dockerfile
     container_name: api
