@@ -239,7 +239,7 @@ class StationController extends BaseController
 
         if($request->filled('voivodeship'))
         {
-            $results = $results->where('stands.voivodeship', '=', $request->voivodeship);
+            $results = $results->where('stations.voivodeship', '=', $request->voivodeship);
         }
 
         if($request->filled('location'))
