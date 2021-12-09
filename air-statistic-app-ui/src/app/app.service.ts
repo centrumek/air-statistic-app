@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
   private backUrl = '';
+  private selectedVoivodeship = new BehaviorSubject<any>(null);
 
   constructor(private router: Router) {
   }
@@ -29,5 +32,13 @@ export class AppService {
       newUrl = backUrl;
     }
     return newUrl;
+  }
+
+  public setFormValues(value: string): void {
+    return this.selectedVoivodeship.next(value);
+  }
+
+  public getFormValues(): Observable<any> {
+    return this.selectedVoivodeship.asObservable();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DetailPageService } from '../detail-page.service';
 import { takeUntil } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { StandMeasurement } from 'src/app/model/stand-measurements';
   templateUrl: './detail-diagram-page.component.html',
   styleUrls: ['./detail-diagram-page.component.scss']
 })
-export class DetailDiagramPageComponent implements OnInit {
+export class DetailDiagramPageComponent implements OnInit, OnDestroy {
 
   public standCode: string;
   public standMeasurementArray?: StandMeasurement[] | null;
@@ -39,6 +39,7 @@ export class DetailDiagramPageComponent implements OnInit {
 
   public ngOnDestroy(): void {
     this.unsubscribe.emit(true);
+    this.detailPageService.resetStandMeasurements();
   }
 
 }

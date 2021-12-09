@@ -26,6 +26,7 @@ Route::get('/station/getCords', [\App\Http\Controllers\API\StationController::cl
 
 Route::get('/measurements/toppolluted', [\App\Http\Controllers\API\MeasurementController::class, 'getTopPollutedLocations']);
 Route::get('/measurements/leastpolluted', [\App\Http\Controllers\API\MeasurementController::class, 'getTopClearLocations']);
+Route::get('/measurements/middlepolluted', [\App\Http\Controllers\API\MeasurementController::class, 'getAvgPollutedStation']);
 
 Route::get('/measurements/archive/{stand_code}', [\App\Http\Controllers\API\MeasurementController::class, 'getArchiveStationData']);
 Route::get('/measurements/station/{station_name}', [\App\Http\Controllers\API\MeasurementController::class, 'getMeasurementsForStation']);

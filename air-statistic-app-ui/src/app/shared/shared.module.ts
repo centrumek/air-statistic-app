@@ -14,6 +14,8 @@ import { ChartPieComponent } from '../chart-pie/chart-pie.component';
 import { ChartBarComponent } from '../chart-bar/chart-bar.component';
 import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { ChartDiagramComponent } from '../chart-diagram/chart-diagram.component';
+import { PollutionStationComponent } from './top-polluted-station/pollution-station.component';
+import { StationChartColumnComponent } from '../station-chart-column/station-chart-column.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { ChartDiagramComponent } from '../chart-diagram/chart-diagram.component'
     ChartBarComponent,
     ChartDiagramComponent,
     InfoModalComponent,
+    PollutionStationComponent,
+    StationChartColumnComponent,
   ],
   imports: [
     NgApexchartsModule,
@@ -49,6 +53,8 @@ import { ChartDiagramComponent } from '../chart-diagram/chart-diagram.component'
     InfoModalComponent,
     BackComponent,
     ChartDiagramComponent,
+    PollutionStationComponent,
+    StationChartColumnComponent,
   ]
 })
 export class SharedModule {

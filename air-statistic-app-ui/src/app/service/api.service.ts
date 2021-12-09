@@ -11,6 +11,32 @@ import { StandMeasurementDto } from '../model/api/stand-measurement.dto';
 import { StationSearchResponse } from '../model/api/station-search.response';
 import { StationSearchRequest } from '../model/api/search.request';
 import { VoivodeshipDto } from '../model/api/voivodeship.dto';
+import { of } from 'rxjs/internal/observable/of';
+import { PollutionStationMeasurementsDto } from '../model/api/station-measurements.dto';
+
+const TOP_POLLUTION_STATION_MEASUREMENTS_MOCK = {
+  address: 'ul. Juliusza Słowackiego 40',
+  location: 'Warszawa',
+  values: [17.3, 14.2, 35.8, 17.9, 15.5, 45.0],
+  stationName: '',
+  value: 14.2,
+};
+
+const LEAST_POLLUTION_STATION_MEASUREMENTS_MOCK = {
+  address: 'ul. Juliusza Słowackiego 40',
+  location: 'Kraków',
+  values: [17.3, 14.2, 35.8, 17.9, 15.5, 45.0],
+  stationName: '',
+  value: 95.0,
+};
+
+const MIDDLE_POLLUTION_STATION_MEASUREMENTS_MOCK = {
+  address: 'ul. Juliusza Słowackiego 40',
+  location: 'Gdańsk',
+  values: [17.3, 14.2, 35.8, 17.9, 15.5, 45.0],
+  stationName: '',
+  value: 35.8,
+};
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +73,39 @@ export class ApiService {
 
     return this.httpClient.get<ApiResponse<StationMeasurementDto[]>>(path, {params})
       .pipe(map(response => response.data));
+  }
+
+  public getTopPolluted(): Observable<PollutionStationMeasurementsDto> {
+    const path = `${this.apiEndpointProvider.getPath('/measurements/toppolluted')}`;
+    const queryParams = new QueryParams();
+    const params: HttpParams = queryParams.params;
+
+    return of(TOP_POLLUTION_STATION_MEASUREMENTS_MOCK);
+    // TODO uncomment after backend changes
+    // return this.httpClient.get<ApiResponse<PollutionStationMeasurementsDto>>(path, {params})
+    //   .pipe(map(response => response.data));
+  }
+
+  public getLeastPolluted(): Observable<PollutionStationMeasurementsDto> {
+    const path = `${this.apiEndpointProvider.getPath('/measurements/leastpolluted')}`;
+    const queryParams = new QueryParams();
+    const params: HttpParams = queryParams.params;
+
+    return of(LEAST_POLLUTION_STATION_MEASUREMENTS_MOCK);
+    // TODO uncomment after backend changes
+    // return this.httpClient.get<ApiResponse<PollutionStationMeasurementsDto>>(path, {params})
+    //   .pipe(map(response => response.data));
+  }
+
+  public getMiddlePolluted(): Observable<PollutionStationMeasurementsDto> {
+    const path = `${this.apiEndpointProvider.getPath('/measurements/middlepolluted')}`;
+    const queryParams = new QueryParams();
+    const params: HttpParams = queryParams.params;
+
+    return of(MIDDLE_POLLUTION_STATION_MEASUREMENTS_MOCK);
+    // TODO uncomment after backend changes
+    // return this.httpClient.get<ApiResponse<PollutionStationMeasurementsDto>>(path, {params})
+    //   .pipe(map(response => response.data));
   }
 
   public getStations(): Observable<ApiResponseData<StationDto[]>> {
