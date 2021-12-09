@@ -34,7 +34,9 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/apexcharts/dist/apexcharts.min.js"
+              "node_modules/apexcharts/dist/apexcharts.min.js",
+              "./node_modules/mapbox-gl/dist/mapbox-gl.css",
+              "./node_modules/@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css"
             ],
             "allowedCommonJsDependencies": [
               "lodash",

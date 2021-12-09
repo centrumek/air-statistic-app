@@ -13,6 +13,7 @@ import { StationSearchRequest } from '../model/api/search.request';
 import { VoivodeshipDto } from '../model/api/voivodeship.dto';
 import { of } from 'rxjs/internal/observable/of';
 import { PollutionStationMeasurementsDto } from '../model/api/station-measurements.dto';
+import { StationCords } from '../model/api/station-cords.dto';
 
 const TOP_POLLUTION_STATION_MEASUREMENTS_MOCK = {
   address: 'ul. Juliusza Słowackiego 40',
@@ -135,6 +136,13 @@ export class ApiService {
       .pipe(map(response => response.data),
         map(array => array.map(v => v.voivodeship)));
   }
+
+  public getStationsCords(): Observable<StationCords[]> {
+    const path = this.apiEndpointProvider.getPath('/station/getCords');
+    const queryParams = new QueryParams();
+    const params: HttpParams = queryParams.params;
+
+    return this.httpClient.get<ApiResponse<StationCords[]>>(path, {params})
+      .pipe(map(response => response.data));
+  }
 }
-
-

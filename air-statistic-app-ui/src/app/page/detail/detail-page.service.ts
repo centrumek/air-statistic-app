@@ -39,6 +39,6 @@ export class DetailPageService {
   }
 
   public resetStandMeasurements(): void {
-    this.standMeasurements.next(null);
+    this.standMeasurements.next([]);
   }
 }

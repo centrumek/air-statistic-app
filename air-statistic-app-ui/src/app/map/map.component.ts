@@ -1,81 +1,66 @@
-import { Component, OnInit } from '@angular/core';
-import Map from 'ol/Map';
-import View from 'ol/View';
-import VectorLayer from 'ol/layer/Vector';
-import Style from 'ol/style/Style';
-import Icon from 'ol/style/Icon';
-import OSM from 'ol/source/OSM';
-import * as olProj from 'ol/proj';
-import TileLayer from 'ol/layer/Tile';
-import { Feature } from 'ol';
-import Point from 'ol/geom/Point';
-import VectorSource from 'ol/source/Vector';
+import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { StationCords } from '../model/api/station-cords.dto';
+import { MapService } from './map.service';
+import { GeoValue } from '../model/geo-values';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  styleUrls: ['./map.component.scss'],
 })
-export class MapComponent implements OnInit {
-
+export class MapComponent implements OnInit, OnDestroy {
   map: any;
-  warsaw: any;
-  krakow: any;
-  vectorSource: any;
-  vectorLayer: any;
-  rasterLayer: any;
-  constructor() { }
+  private unsubscribe = new EventEmitter<boolean>();
+  public stationCords?: StationCords[] | null;
+  public geoValues?: GeoValue[] | [];
+  public showModal = false;
+  public currentStationName = '';
+  public currentStationCode = '';
+
+  constructor(private mapPageService: MapService) {}
+
+  public setStation(station_name: string, station_code: string) {
+    this.showModal = true;
+    this.currentStationName = station_name;
+    this.currentStationCode = station_code;
+  }
 
   ngOnInit(): void {
-
-    this.warsaw = new Feature({
-      geometry: new Point(olProj.fromLonLat([21.017532, 52.237049]))
-    });
-    this.warsaw.setStyle(new Style({
-      image: new Icon(({
-        color: '#E289F2',
-        crossOrigin: 'anonymous',
-        src:'assets/marker.svg',
-        imgSize: [25, 25],
-      }))
-    }));
-
-    this.krakow = new Feature({
-      geometry: new Point(olProj.fromLonLat([19.944544, 50.049683	]))
-    })
-
-    this.krakow.setStyle(new Style({
-      image: new Icon(({
-        color: '#E289F2',
-        crossOrigin: 'anonymous',
-        src:'assets/marker.svg',
-        imgSize: [25, 25],
-      }))
-    }));
-    this.vectorSource = new VectorSource({
-      features: [this.warsaw, this.krakow]
-    });
-    this.vectorLayer = new VectorLayer({
-      source: this.vectorSource
-    });
-
-    this.initialize();
+    this.mapPageService
+      .getStationCords()
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe((data) => {
+        this.geoValues = data.map((station) => {
+          return {
+            type: 'Feature',
+            properties: {
+              station_code: station.station_code,
+              station_name: station.station_name,
+            },
+            geometry: {
+              type: 'Point',
+              coordinates: [Number(station.wgs84_e), Number(station.wgs84_n)],
+            },
+          };
+        });
+      });
   }
 
-  initialize() {
-    this.map = new Map({
-      target: 'map',
-      layers: [
-        new TileLayer({
-          source: new OSM()
-        }),
-        this.vectorLayer
-      ],
-      view: new View({
-        center: olProj.fromLonLat([21.017532, 52.237049]),
-        zoom: 7
-      })
-    });
+  public toggleModal() {
+    this.showModal = !this.showModal;
+
+    const body = document.getElementsByTagName('body')[0];
+    if (this.showModal) {
+      body.style.overflow = 'hidden';
+    } else {
+      body.style.overflow = 'initial';
+    }
   }
 
+  public ngOnDestroy(): void {
+    this.unsubscribe.emit(true);
+    this.mapPageService.resetStationCords();
+  }
 }
