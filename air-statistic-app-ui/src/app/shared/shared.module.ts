@@ -8,6 +8,13 @@ import { BackComponent } from './back/back.component';
 import { ChartTest2Component } from '../chart-test2/chart-test2.component';
 import { UserBoxComponent } from './user-box/user-box.component';
 import { CommonModule } from '@angular/common';
+import { ChartBasicComponent } from '../chart-basic/chart-basic.component';
+import { ChartColumnComponent } from '../chart-column/chart-column.component';
+import { ChartPieComponent } from '../chart-pie/chart-pie.component';
+import { ChartBarComponent } from '../chart-bar/chart-bar.component';
+import { InfoModalComponent } from '../info-modal/info-modal.component';
+import { PollutionStationComponent } from './top-polluted-station/pollution-station.component';
+import { StationChartColumnComponent } from '../station-chart-column/station-chart-column.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +25,13 @@ import { CommonModule } from '@angular/common';
     PageNotFoundComponent,
     BackComponent,
     UserBoxComponent,
+    ChartBasicComponent,
+    ChartColumnComponent,
+    ChartPieComponent,
+    ChartBarComponent,
+    InfoModalComponent,
+    PollutionStationComponent,
+    StationChartColumnComponent,
   ],
   imports: [
     NgApexchartsModule,
@@ -27,9 +41,16 @@ import { CommonModule } from '@angular/common';
     TailwindTestComponent,
     ChartTestComponent,
     ChartTest2Component,
+    ChartBasicComponent,
+    ChartColumnComponent,
+    ChartPieComponent,
+    ChartBarComponent,
     AboutUsComponent,
     PageNotFoundComponent,
+    InfoModalComponent,
     BackComponent,
+    PollutionStationComponent,
+    StationChartColumnComponent,
   ]
 })
 export class SharedModule {

@@ -53,6 +53,7 @@ CSV HEADER;
 
 
 COPY measurements(id,  measurement_date, stand_code, measurement_value)
-FROM '/raw_data/measurements-partial.csv'
+FROM '/raw_data/measurements.csv'
 DELIMITER ','
 CSV HEADER;
+

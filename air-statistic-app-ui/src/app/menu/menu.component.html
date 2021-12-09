@@ -1,12 +1,12 @@
 <div class="flex flex-wrap w-full">
   <nav class="flex justify-between bg-gray rounded-t-2xl text-black w-full mx-4 mt-4">
-    <div class="px-5 xl:px-12 py-6 flex w-full items-center ml-32">
+    <div class="px-5 xl:px-12 py-6 flex w-full items-center ml-10">
       <a class="text-3xl font-bold font-heading" routerLink="dashboard">
         AirFree
         </a>
         <!-- Nav Links -->
       <ul class="hidden md:flex px-4 mr-auto ml-8 font-semibold font-heading space-x-12">
-        <li class="">
+        <li>
           <a class="hover:text-blue" routerLink="dashboard">Dashboard</a>
           </li>
           <li>
@@ -15,11 +15,11 @@
         </ul>
       <!-- Header Buttons -->
         <div class="hidden xl:flex items-center space-x-5 items-center">
-          <a class="hover:text-gray-200" routerLink="search">
+          <a class="hover:text-gray-200" (click)="navigateToSearchForm()">
             <button class="bg-white hover:bg-blue text-black hover:text-white font-bold py-2 px-4 rounded w-24">Szukaj
             </button>
           </a>
-          <a class="hover:text-gray-200" href="#">
+          <a class="hover:text-gray-200" routerLink="dashboard">
             <button class="bg-blue hover:bg-white text-white hover:text-black font-bold py-2 px-4 rounded w-24">Air
             </button>
           </a>

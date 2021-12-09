@@ -1,0 +1,36 @@
+<div>
+  <div class="w-80 m-auto mb-4 max-w-sm">
+    <div class="rounded-t-2xl shadow-2xl w-full p-4"
+         [class.bg-red]="type == 'top'"
+         [class.bg-yellow]="type == 'middle'"
+         [class.bg-green]="type == 'least'" style="height: 150px;width:320px;">
+      
+      <div class="flex items-center justify-center flex-col text-white">
+        <div class="text-3xl font-bold">{{location}}</div>
+        <div>{{address}}</div>
+      </div>
+      <div class="flex items-center justify-around flex-row text-white mt-4">
+        <div class="text-3xl font-bold">{{value}}</div>
+        <div>Pył zawieszony PM10</div>
+      </div>
+    
+    </div>
+    <div class="bg-white shadow-2xl rounded-b-3xl">
+      <div class="w-5/6 m-auto">
+        <app-station-chart-column [values]="values"></app-station-chart-column>
+      </div>
+      
+      <div class="flex justify-around w-full p-4" style="margin-top: -50px;">
+        <div class="bg-gray rounded-2xl flex items-center justify-center font-bold" style="width: 30%;">
+          #{{location}}
+        </div>
+        <div class="bg-gray rounded-2xl w-4/12 flex items-center justify-center font-bold" style="width: 30%;">#Air
+        </div>
+        <div class="bg-gray rounded-2xl w-4/12 flex items-center justify-center font-bold" style="width: 30%;">
+          #condition
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</div>

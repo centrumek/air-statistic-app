@@ -1,60 +1,68 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Form } from '../../../config/form/form.model';
 import { Validators } from '@angular/forms';
 import { ApiService } from '../../../service/api.service';
+import { StationSearchService } from '../../../service/station-search.service';
+import { AppService } from '../../../app.service';
+import { take, takeUntil } from 'rxjs/operators';
+import { ObjectUtils } from '../../../utils/object.utils';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent extends Form {
+export class SearchComponent extends Form implements OnInit, OnDestroy {
+
+  private unsubscribe = new EventEmitter<boolean>();
 
   public processing = false;
+  public voivodeships: string[] = [];
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService,
+              private stationSearchService: StationSearchService,
+              private appService: AppService) {
     super({
       elements: {
         stationNumber: {
-          value: '4127',
+          value: '',
         },
         stationName: {
-          value: 'Kraków Południe',
-          validators: [Validators.required],
+          value: '',
         },
         stationCode: {
-          value: 'KR102',
-          validators: [Validators.required],
+          value: '',
         },
         stationType: {
-          value: 'Lucky',
+          value: '',
         },
         internationalCode: {
-          value: 'PL-KR-102',
+          value: '',
         },
         voivodeship: {
-          value: 'Małopolskie'
+          value: '',
+          validators: [Validators.required],
         },
         address: {
-          value: 'Polna 12'
+          value: ''
         },
         location: {
-          value: 'Kraków'
+          value: ''
         },
         locationType: {
-          value: 'A19'
+          value: ''
         },
         indicator: {
-          value: 'Benzen'
+          value: ''
         },
         measurementType: {
-          value: 'Automatyczny'
+          value: ''
         },
         measurementStartDate: {
-          value: '2021-02-02'
+          value: ''
         },
         measurementEndDate: {
-          value: '2021-02-03'
+          value: ''
         },
       },
       validationMessages: {
@@ -68,20 +76,43 @@ export class SearchComponent extends Form {
     })
   }
 
+  public ngOnInit(): void {
+    this.apiService.getVoivodeships()
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(response => {
+        this.voivodeships = response;
+        this.appService.getFormValues()
+          .pipe(take(1))
+          .subscribe(value => {
+            if (ObjectUtils.isDefined(value)) {
+              this.form.setValue(value);
+              this.submit();
+            }
+          });
+      });
+  }
+
+  public onFormChange(name: string): void {
+    super.onFormChange(name);
+    this.appService.setFormValues(this.form.value);
+  }
+
   public submit(): void {
     super.submit();
     if (this.form.valid) {
       this.processing = true;
-      setTimeout(() => {
-        this.apiService.search(this.form.value)
-          .subscribe(response => {
-            // TODO search result action
-            this.processing = false;
-          }, () => {
-            this.processing = false;
-          })
-      }, 1000)
+
+      this.stationSearchService.searchStations(StationSearchService.prepareSearchRequest(this.form.value))
+        .subscribe(response => {
+          this.stationSearchService.setSearchedStations(response);
+          this.processing = false;
+        }, () => {
+          this.processing = false;
+        })
     }
   }
 
+  public ngOnDestroy(): void {
+    this.unsubscribe.emit(true);
+  }
 }

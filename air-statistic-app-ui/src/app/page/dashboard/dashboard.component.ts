@@ -1,21 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { AfterViewInit, Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
-
-  constructor(private router: Router) {
+export class DashboardComponent implements AfterViewInit {
+  constructor(private activatedRoute: ActivatedRoute,
+              private router: Router) {
   }
 
-  public ngOnInit(): void {
+  public ngAfterViewInit(): void {
+    if (this.router.url.includes('#search')) {
+      setTimeout(() => {
+        document.getElementById('search')?.scrollIntoView();
+      }, 100);
+    }
   }
-
-  public navigateToDetailPage(): void {
-    this.router.navigateByUrl('/dashboard/detail/station/123')
-  }
-
 }

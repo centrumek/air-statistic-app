@@ -11,7 +11,7 @@ export const DASHBOARD_ROUTES: Routes = [
     component: DashboardComponent,
   },
   {
-    path: 'detail/station/:id',
+    path: 'detail/station/:stationCode',
     component: StationDetailPageWrapperComponent,
     children: [
       {
@@ -21,15 +21,15 @@ export const DASHBOARD_ROUTES: Routes = [
         }
       },
       {
-        path: 'diagram', component: DetailDiagramPageComponent,
+        path: 'diagram/:standCode', component: DetailDiagramPageComponent,
         data: {
-          backUrl: '/..'
+          backUrl: '/../..'
         }
       },
       {
-        path: 'table', component: DetailTablePageComponent,
+        path: 'table/:standCode', component: DetailTablePageComponent,
         data: {
-          backUrl: '/..'
+          backUrl: '/../..'
         }
       }
     ]

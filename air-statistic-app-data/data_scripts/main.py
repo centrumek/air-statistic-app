@@ -35,5 +35,5 @@ def join_to_final_file(file, final_file, counter):
                         id_counter += 1
     return id_counter
 
-join_all_files_to_final(r'../raw_data/Rogal data',
-                        r'../raw_data/measurements.csv')
+#convert_to_csv('../raw_data/ddd', '../raw_data/partial_csv')
+join_all_files_to_final( '../raw_data/partial_csv', '../raw_data/measurement.csv')
