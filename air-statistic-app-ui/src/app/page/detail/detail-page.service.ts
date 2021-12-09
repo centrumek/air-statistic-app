@@ -12,7 +12,7 @@ export class DetailPageService {
 
 
   private measurements = new BehaviorSubject<StationMeasurementDto[]>([]);
-  private standMeasurements = new BehaviorSubject<StandMeasurementDto | null>(null);
+  private standMeasurements = new BehaviorSubject<StandMeasurementDto[]>([]);
 
   constructor(private apiService: ApiService) {}
 
@@ -25,8 +25,8 @@ export class DetailPageService {
       .pipe(tap(response => this.measurements.next(response)));
   }
 
-  public getStandMeasurements(standCode: string): Observable<StandMeasurementDto | null> {
-    if (ObjectUtils.nonNullOrEmpty(this.standMeasurements.getValue())) {
+  public getStandMeasurements(standCode: string): Observable<StandMeasurementDto[]> {
+    if (ObjectUtils.tableNotNullAndNotEmpty(this.standMeasurements.getValue())) {
       return this.standMeasurements.asObservable();
     }
 

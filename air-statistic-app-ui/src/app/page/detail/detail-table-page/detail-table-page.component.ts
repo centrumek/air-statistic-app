@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { DetailPageService } from '../detail-page.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
-import { StandMeasurementDto } from 'src/app/model/api/stand-measurement.dto';
+import { StandMeasurement } from 'src/app/model/stand-measurements';
 
 @Component({
   selector: 'app-detail-table-page',
@@ -12,7 +12,8 @@ import { StandMeasurementDto } from 'src/app/model/api/stand-measurement.dto';
 export class DetailTablePageComponent implements OnInit, OnDestroy {
 
   public standCode: string;
-  private stand?: StandMeasurementDto | null;
+  public standMeasurementArray?: StandMeasurement[] | null;
+  public stand?: StandMeasurement | null;
   private unsubscribe = new EventEmitter<boolean>();
 
   constructor(private detailPageService: DetailPageService,
@@ -24,7 +25,16 @@ export class DetailTablePageComponent implements OnInit, OnDestroy {
     this.detailPageService.getStandMeasurements(this.standCode)
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(data => {
-        this.stand = data;
+        this.standMeasurementArray = data.map(chart => {
+          return {
+            stand_code: chart.stand_code,
+            indicator_code: chart.indicator_code,
+            indicator: chart.indicator,
+            measurement_values: chart.measurement_values.split(',').map(Number),
+            measurement_dates: chart.measurement_dates.split(','),
+          }
+        });
+        this.stand = this.standMeasurementArray[0];
       });
   }
 

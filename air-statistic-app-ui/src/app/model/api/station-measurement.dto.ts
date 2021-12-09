@@ -1,4 +1,3 @@
-import { Stand } from './stand.dto';
 
 export interface StationMeasurementDto {
   // id: number;
