@@ -3,6 +3,8 @@
 @import '~tailwindcss/utilities';
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-alpine.css";
+@import '~mapbox-gl/dist/mapbox-gl.css';
+@import '~@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css';
 
 .ag-header {
   border: none !important;

@@ -16,6 +16,10 @@ import { InfoModalComponent } from '../info-modal/info-modal.component';
 import { ChartDiagramComponent } from '../chart-diagram/chart-diagram.component';
 import { PollutionStationComponent } from './top-polluted-station/pollution-station.component';
 import { StationChartColumnComponent } from '../station-chart-column/station-chart-column.component';
+import { MapComponent } from '../map/map.component';
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { MapService } from '../map/map.service';
+import { MapModalComponent } from '../map-modal/map-modal.component';
 
 
 @NgModule({
@@ -35,10 +39,15 @@ import { StationChartColumnComponent } from '../station-chart-column/station-cha
     InfoModalComponent,
     PollutionStationComponent,
     StationChartColumnComponent,
+    MapComponent,
+    MapModalComponent,
   ],
   imports: [
     NgApexchartsModule,
-    CommonModule
+    CommonModule,
+    NgxMapboxGLModule.withConfig({
+      accessToken: 'pk.eyJ1IjoiamRvbWluaWsiLCJhIjoiY2t3ejg5NDhwMDQ1NTJycWxuN2g1ZmNqZyJ9.KzlUFjYhzCK4fu87AcaEAg', // Optional, can also be set per map (accessToken input of mgl-map)
+    })
   ],
   exports: [
     TailwindTestComponent,
@@ -55,7 +64,10 @@ import { StationChartColumnComponent } from '../station-chart-column/station-cha
     ChartDiagramComponent,
     PollutionStationComponent,
     StationChartColumnComponent,
-  ]
+    MapComponent,
+    MapModalComponent,
+  ],
+  providers: [MapService]
 })
 export class SharedModule {
 }

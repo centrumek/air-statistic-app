@@ -4,6 +4,7 @@ import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { AboutUsComponent } from './page/about-us/about-us.component';
 import { SearchPageComponent } from './page/search/search-page.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { MapComponent } from './map/map.component';
 
 export const ROUTES: Routes = [
   {
@@ -14,6 +15,10 @@ export const ROUTES: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./page/dashboard/dashboard.module').then(m => m.DashboardModule),
+  },
+  {
+    path: 'map',
+    component: MapComponent,
   },
   {
     path: 'about-us',
