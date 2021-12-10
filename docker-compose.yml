@@ -1,6 +1,12 @@
 version: '3.1'
 
 services:
+  ui:
+    build: ./air-statistic-app-ui/.
+    container_name: air-statistic-app-ui
+    restart: always
+    ports:
+      - 8080:80
   db:
     image: postgres:14.0
     container_name: air-statistic-app-data

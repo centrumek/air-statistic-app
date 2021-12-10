@@ -23,7 +23,9 @@ import { AgGridModule } from 'ag-grid-angular';
     ReactiveFormsModule,
     NgApexchartsModule,
     DashboardModule,
-    SharedModule,
+    SharedModule.forRoot({
+      mapboxToken: 'pk.eyJ1IjoiamRvbWluaWsiLCJhIjoiY2t3ejg5NDhwMDQ1NTJycWxuN2g1ZmNqZyJ9.KzlUFjYhzCK4fu87AcaEAg',
+    }),
     HttpClientModule,
     AgGridModule.withComponents([]),
   ],

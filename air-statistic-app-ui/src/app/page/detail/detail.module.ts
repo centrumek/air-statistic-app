@@ -8,7 +8,6 @@ import { RouterModule } from '@angular/router';
 import { StationDetailPageWrapperComponent } from './station-detail-page-wrapper/station-detail-page-wrapper.component';
 import { DetailNavigationComponent } from './detail-navigation/detail-navigation.component';
 import { DetailPageService } from './detail-page.service';
-import { MapComponent } from 'src/app/map/map.component';
 import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
@@ -30,7 +29,6 @@ import { AgGridModule } from 'ag-grid-angular';
     DetailDiagramPageComponent,
     DetailTablePageComponent,
     StationDetailPageWrapperComponent,
-    MapComponent
   ],
   providers: [DetailPageService]
 })
