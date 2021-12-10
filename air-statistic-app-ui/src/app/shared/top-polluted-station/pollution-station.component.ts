@@ -23,7 +23,6 @@ export class PollutionStationComponent {
   }
 
   @Input('stationMeasurements') set setStation(stationMeasurements: PollutionStationMeasurementsDto) {
-    console.log(stationMeasurements);
     this.stationMeasurements = stationMeasurements;
     this.location = stationMeasurements.station[0].location;
     this.address = stationMeasurements.station[0].adress;
@@ -31,8 +30,6 @@ export class PollutionStationComponent {
       .filter(value => value > 0)
       .slice(0, 8)
       .map(value => Math.round(value * 100) / 100);
-
-    console.log(this.values);
 
     this.value = Math.max.apply(Math, this.values);
   }

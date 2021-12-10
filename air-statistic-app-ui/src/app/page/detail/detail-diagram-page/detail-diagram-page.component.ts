@@ -34,7 +34,6 @@ export class DetailDiagramPageComponent implements OnInit, OnDestroy {
           }
         });
         this.stand = this.standMeasurementArray[0];
-        console.log(this.stand);
       });
   }
 

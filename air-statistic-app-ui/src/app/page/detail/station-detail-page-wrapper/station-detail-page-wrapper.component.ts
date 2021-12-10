@@ -17,16 +17,11 @@ export class StationDetailPageWrapperComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private apiService: ApiService) {
     this.stationCode = this.route.snapshot.params['stationCode'];
-    console.log('WRAPPER: ', this.stationCode);
   }
 
   public ngOnInit(): void {
     this.apiService.getStation(this.stationCode)
-      .subscribe(station => {
-        this.station = station[0];
-        console.log('WRAPPER: ', this.station);
-
-      });
+      .subscribe(station => this.station = station[0]);
   }
 
   public toggleModal() {
