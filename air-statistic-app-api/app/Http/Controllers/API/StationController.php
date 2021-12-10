@@ -32,7 +32,13 @@ class StationController extends BaseController
      */
     public function getCords()
     {
-        $stations = DB::table('stations')->select('station_code', 'station_name', 'wgs84_n', 'wgs84_e')->get();
+        $stations = DB::table('stations')
+            ->select('station_code', 'station_name', 'wgs84_n', 'wgs84_e')
+            ->where("wgs84_n",">=","-90")
+            ->where("wgs84_n","<=", "90")
+            ->where("wgs84_e",">=","-90")
+            ->where("wgs84_e","<=", "90")
+            ->get();
 
         if($stations->isEmpty())
             return $this->sendError('Cords not found', 404);
