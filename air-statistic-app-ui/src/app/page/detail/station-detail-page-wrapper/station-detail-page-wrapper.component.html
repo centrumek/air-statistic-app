@@ -1,8 +1,14 @@
 <div class="w-100% bg-gray ml-4 mr-4 mb-4">
   <div class="flex mb-10 ml-10 mr-2 items-center flex-wrap">
     <app-back class="mr-4 mb-4 w-full sm:w-min"></app-back>
-    <div class="bg-purple flex items-center justify-center text-white font-bold py-2 px-4 h-14 rounded text-3xl mr-4 mb-4 w-full sm:w-min">KRAKÓW</div>
-    <div class="bg-white flex justify-center items-center text-center text-black font-bold py-2 px-4 h-14 rounded text-base mr-4 mb-4 w-full sm:w-min">ul.Dietla</div>
+    <div
+      class="bg-purple flex items-center justify-center text-white font-bold py-2 px-4 h-14 rounded text-3xl mr-4 mb-4 w-full sm:w-min"
+      style="width: fit-content;">{{station?.location}}
+    </div>
+    <div
+      class="bg-white flex justify-center items-center text-center text-black font-bold py-2 px-4 h-14 rounded text-base mr-4 mb-4 w-full sm:w-min"
+      style="width: fit-content;">{{station?.adress}}
+    </div>
     <button class="bg-white flex justify-center items-center text-black font-bold py-2 px-4 h-14 rounded text-base mr-4 mb-4 w-full sm:w-min" (click)="toggleModal()">
       <svg class="h-10 w-10 text-gray-400" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="12" cy="12" r="9" />  <line x1="12" y1="8" x2="12.01" y2="8" />  <polyline points="11 12 12 12 12 16 13 16" /></svg>
     </button>

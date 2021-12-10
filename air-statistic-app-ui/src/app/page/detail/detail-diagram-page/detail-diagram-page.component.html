@@ -1,4 +1,18 @@
 <app-detail-navigation [standCode]="standCode"></app-detail-navigation>
-<div class="mx-4 my-10">
-  <app-chart-diagram [measurements]="stand"></app-chart-diagram>
+<div class="mx-4 my-10 flex justify-center " style="min-height: 600px;">
+  
+  <div class="flex justify-center items-center" *ngIf="!stand">
+    <div
+      class="
+      loader
+      ease-linear
+      rounded-full
+      border-8 border-t-8 border-gray-200
+      h-32
+      w-32
+    "
+    ></div>
+  </div>
+  
+  <app-chart-diagram style="width: 100vw;" [measurements]="stand" *ngIf="stand"></app-chart-diagram>
 </div>

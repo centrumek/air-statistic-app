@@ -1,8 +1,10 @@
-import { Component, OnInit, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DetailPageService } from '../detail-page.service';
 import { takeUntil } from 'rxjs/operators';
 import { StandMeasurement } from 'src/app/model/stand-measurements';
+
+const DATA_NUMBER = 200;
 
 @Component({
   selector: 'app-detail-diagram-page',
@@ -24,16 +26,26 @@ export class DetailDiagramPageComponent implements OnInit, OnDestroy {
     this.detailPageService.getStandMeasurements(this.standCode)
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(data => {
+
+
         this.standMeasurementArray = data.map(chart => {
+
+          const measurementValuesTab = chart.measurement_values.split(',');
+          const measurementDatesTab = chart.measurement_dates.split(',');
+
           return {
             stand_code: chart.stand_code,
             indicator_code: chart.indicator_code,
             indicator: chart.indicator,
-            measurement_values: chart.measurement_values.split(',').map(Number),
-            measurement_dates: chart.measurement_dates.split(','),
+            measurement_values: measurementValuesTab
+              .slice(measurementValuesTab.length - DATA_NUMBER, measurementValuesTab.length)
+              .map(Number),
+            measurement_dates: measurementDatesTab
+              .slice(measurementDatesTab.length - DATA_NUMBER, measurementDatesTab.length)
           }
         });
         this.stand = this.standMeasurementArray[0];
+        console.log(this.stand);
       });
   }
 

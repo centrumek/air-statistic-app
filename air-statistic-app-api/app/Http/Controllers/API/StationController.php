@@ -223,6 +223,7 @@ class StationController extends BaseController
             'voivodeship' => 'nullable|string',
             'location' => 'nullable|string',
             'station_code' => 'nullable|string',
+            'indicator' => 'nullable|string',
         ]);
 
         if($validator->fails()){
@@ -251,6 +252,10 @@ class StationController extends BaseController
         if($request->filled('location'))
         {
             $results = $results->where('stations.location', '=', $request->location);
+        }
+
+        if ($request->filled('indicator')) {
+            $results = $results->where('stations.indicator', '=', $request->indicator);
         }
 
         if($request->filled('station_code'))

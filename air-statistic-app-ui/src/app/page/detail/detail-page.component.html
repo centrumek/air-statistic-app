@@ -1,3 +1,17 @@
 <div class="flex justify-center sm:justify-center ml-10 md:justify-between  items-start sm:items-center flex-wrap">
 	<ng-container #chartContainer></ng-container>
+  
+  <div class="flex justify-center items-center" *ngIf="!loaded" style="height: 80vh; width: 100vw">
+    <div
+      class="
+      loader
+      ease-linear
+      rounded-full
+      border-8 border-t-8 border-gray-200
+      h-32
+      w-32
+    "
+    ></div>
+  </div>
+
 </div>

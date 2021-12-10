@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { AboutUsComponent } from './page/about-us/about-us.component';
 import { SearchPageComponent } from './page/search/search-page.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';

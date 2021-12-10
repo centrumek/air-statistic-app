@@ -9,7 +9,7 @@ import { StationDetailPageWrapperComponent } from './station-detail-page-wrapper
 import { DetailNavigationComponent } from './detail-navigation/detail-navigation.component';
 import { DetailPageService } from './detail-page.service';
 import { MapComponent } from 'src/app/map/map.component';
-
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -23,6 +23,7 @@ import { MapComponent } from 'src/app/map/map.component';
     CommonModule,
     SharedModule,
     RouterModule,
+    AgGridModule.withComponents([]),
   ],
   exports: [
     DetailPageComponent,
