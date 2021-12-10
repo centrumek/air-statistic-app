@@ -247,6 +247,11 @@ e3 ||..|{ e4
 ## Technology stack
 
 ### Frontend
+- **Angular 13.0** - Framework/Platform for building mobile and desktop web applications.
+- **Jest** - JavaScript testing framework designed to ensure correctness of any JavaScript codebase.
+- **AG Grid** - AG Grid is a feature rich datagrid designed for the major JavaScript Frameworks.
+- **Apexchart.js** - Modern charting library that helps developers to create beautiful and interactive visualizations for web pages.
+- **Mapbox GL JS** - JavaScript library for interactive, customizable vector maps on the web.
 
 ### Backend
 
