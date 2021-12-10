@@ -250,7 +250,7 @@ class StationController extends BaseController
 
         if($request->filled('location'))
         {
-            $results = $results->where('stands.location', '=', $request->location);
+            $results = $results->where('stations.location', '=', $request->location);
         }
 
         if($request->filled('station_code'))
