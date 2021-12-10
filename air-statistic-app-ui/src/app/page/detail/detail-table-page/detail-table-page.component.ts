@@ -3,6 +3,7 @@ import { DetailPageService } from '../detail-page.service';
 import { ActivatedRoute } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { StandMeasurement } from 'src/app/model/stand-measurements';
+import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
 
 @Component({
   selector: 'app-detail-table-page',
@@ -15,10 +16,30 @@ export class DetailTablePageComponent implements OnInit, OnDestroy {
   public standMeasurementArray?: StandMeasurement[] | null;
   public stand?: StandMeasurement | null;
   private unsubscribe = new EventEmitter<boolean>();
+  public paginationPageSize = 100;
+
+  public columnDefs: ColDef[] = [
+    {
+      field: 'date', headerName: 'Data', sortable: true,
+      comparator: (valueA, valueB) => {
+        if (valueA == valueB) return 0;
+        return (new Date(valueA) > new Date(valueB)) ? 1 : -1;
+      }
+    },
+    {field: 'value', headerName: 'Wartość Pomiaru', sortable: true}
+  ];
+
+  public rowData: {
+    date: string,
+    value: number | undefined
+  }[] = [];
+  private gridApi: GridApi | any;
+
 
   constructor(private detailPageService: DetailPageService,
               private route: ActivatedRoute,) {
-          this.standCode = this.route.snapshot.params['standCode'];
+    this.standCode = this.route.snapshot.params['standCode'];
+    this.rowData = [];
   }
 
   public ngOnInit(): void {
@@ -35,8 +56,26 @@ export class DetailTablePageComponent implements OnInit, OnDestroy {
           }
         });
         this.stand = this.standMeasurementArray[0];
+        this.rowData = this.stand?.measurement_dates.map((date, index) => {
+          return {
+            date: date,
+            value: this.stand?.measurement_values[index],
+          }
+        });
       });
   }
+
+  public onGridReady(event: GridReadyEvent): void {
+    this.gridApi = event.api;
+    setTimeout(() => {
+      this.gridApi?.sizeColumnsToFit();
+      const sortModel = [
+        {colId: 'date', sort: 'desc'}
+      ];
+      this.gridApi.setSortModel(sortModel)
+    }, 300);
+  }
+
 
   public ngOnDestroy(): void {
     this.unsubscribe.emit(true);
