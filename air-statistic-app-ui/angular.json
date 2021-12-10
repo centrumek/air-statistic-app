@@ -31,12 +31,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [
-              "node_modules/apexcharts/dist/apexcharts.min.js",
+              "src/styles.scss",
               "./node_modules/mapbox-gl/dist/mapbox-gl.css",
               "./node_modules/@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css"
+            ],
+            "scripts": [
+              "node_modules/apexcharts/dist/apexcharts.min.js"
             ],
             "allowedCommonJsDependencies": [
               "lodash",
@@ -74,7 +74,7 @@
               "namedChunks": true
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",

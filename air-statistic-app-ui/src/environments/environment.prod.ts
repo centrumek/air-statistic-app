@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  mockedRestApi: false,
+  mockedRestApi: true,
   apiProtocol: 'auto',
   apiHost: 'localhost',
   apiPort: '8000',
