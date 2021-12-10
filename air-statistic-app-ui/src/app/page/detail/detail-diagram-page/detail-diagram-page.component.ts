@@ -29,11 +29,12 @@ export class DetailDiagramPageComponent implements OnInit, OnDestroy {
             stand_code: chart.stand_code,
             indicator_code: chart.indicator_code,
             indicator: chart.indicator,
-            measurement_values: chart.measurement_values.split(',').map(Number),
-            measurement_dates: chart.measurement_dates.split(','),
+            measurement_values: chart.measurement_values.split(',').slice(0, 200).map(Number),
+            measurement_dates: chart.measurement_dates.split(',').slice(0, 200),
           }
         });
         this.stand = this.standMeasurementArray[0];
+        console.log(this.stand);
       });
   }
 

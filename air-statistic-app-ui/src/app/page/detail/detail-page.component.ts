@@ -4,6 +4,8 @@ import { DetailPageService } from './detail-page.service';
 import { takeUntil } from 'rxjs/operators';
 import { StationMeasurement } from '../../model/station-measurement';
 import { componentMap, componentTypes } from './componentMap';
+import { ApiService } from '../../service/api.service';
+import { StationDto } from '../../model/api/station.dto';
 
 @Component({
   selector: 'app-detail-page',
@@ -15,10 +17,13 @@ export class DetailPageComponent implements OnInit, OnDestroy {
   @ViewChild('chartContainer', { read: ViewContainerRef, static: true })
   chartContainer?: ViewContainerRef;
 
+
   private unsubscribe = new EventEmitter<boolean>();
   private stationCode: string;
   private measurements: StationMeasurement[] = [];
   private componentList: any[] = [];
+
+  public loaded = false;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -28,6 +33,8 @@ export class DetailPageComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+
+
     this.detailPageService.getMeasurements(this.stationCode)
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(data => {
@@ -41,6 +48,7 @@ export class DetailPageComponent implements OnInit, OnDestroy {
           }
         })
         this.loadChartList();
+        this.loaded = true;
       });
   }
 

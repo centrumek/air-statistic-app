@@ -1,8 +1,51 @@
-<div class="flex justify-around w-10/12">
-  <app-pollution-station-component [stationMeasurements]="leastPollutedStationMeasurements"
+<div class="flex justify-around w-10/12" style="min-height: 432px;">
+  <div class="flex justify-center items-center" *ngIf="!leastPollutedStationMeasurements">
+    <div
+      class="
+      loader
+      ease-linear
+      rounded-full
+      border-8 border-t-8 border-gray-200
+      h-32
+      w-32
+    "
+    ></div>
+  </div>
+  
+  <app-pollution-station-component *ngIf="leastPollutedStationMeasurements"
+                                   [stationMeasurements]="leastPollutedStationMeasurements"
                                    [type]="'least'"></app-pollution-station-component>
-  <app-pollution-station-component [stationMeasurements]="topPollutedStationMeasurements"
+  <div class="flex justify-center items-center" *ngIf="!topPollutedStationMeasurements">
+    <div
+      class="
+      loader
+      ease-linear
+      rounded-full
+      border-8 border-t-8 border-gray-200
+      h-32
+      w-32
+    "
+    ></div>
+  </div>
+  
+  <app-pollution-station-component *ngIf="topPollutedStationMeasurements"
+                                   [stationMeasurements]="topPollutedStationMeasurements"
                                    [type]="'top'"></app-pollution-station-component>
-  <app-pollution-station-component [stationMeasurements]="middlePollutedStationMeasurements"
+  
+  <div class="flex justify-center items-center" *ngIf="!middlePollutedStationMeasurements">
+    <div
+      class="
+      loader
+      ease-linear
+      rounded-full
+      border-8 border-t-8 border-gray-200
+      h-32
+      w-32
+    "
+    ></div>
+  </div>
+  
+  <app-pollution-station-component *ngIf="middlePollutedStationMeasurements"
+                                   [stationMeasurements]="middlePollutedStationMeasurements"
                                    [type]="'middle'"></app-pollution-station-component>
 </div>

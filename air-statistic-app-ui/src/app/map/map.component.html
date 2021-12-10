@@ -4,11 +4,27 @@
       Mapa dostępnych stacji pomiarowych
     </h3>
   </div>
-  <mgl-map
-        [style]="'mapbox://styles/mapbox/streets-v9'"
-        [zoom]="[5]"
-        [center]="[18.288110, 52.173435]"
-      >
+  
+  <div class="flex items-center justify-center" style="height: 80vh;" *ngIf="!geoValues">
+    <div class="flex justify-center items-center">
+      <div
+        class="
+      loader
+      ease-linear
+      rounded-full
+      border-8 border-t-8 border-gray-200
+      h-32
+      w-32
+    "
+      ></div>
+    </div>
+  </div>
+  
+  <mgl-map *ngIf="geoValues"
+           [style]="'mapbox://styles/mapbox/streets-v9'"
+           [zoom]="[5]"
+           [center]="[18.288110, 52.173435]"
+  >
     <mgl-marker *ngFor="let cords of geoValues" [feature]="cords">
       <div
         (click)="setStation(cords.properties.station_name, cords.properties.station_code)"
@@ -23,4 +39,5 @@
     </mgl-marker>
   </mgl-map>
 </div>
-<app-map-modal (closeModal)="toggleModal()" [showModal]="showModal" [station_name]="currentStationName" [station_code]="currentStationCode" ></app-map-modal>
+<app-map-modal (closeModal)="toggleModal()" [showModal]="showModal" [station_name]="currentStationName"
+               [station_code]="currentStationCode"></app-map-modal>

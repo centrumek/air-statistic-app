@@ -1,7 +1,6 @@
+import { StationDto } from './station.dto';
+
 export interface PollutionStationMeasurementsDto {
-  stationName: string;
-  location: string;
-  address: string;
+  station: StationDto[],
   values: number[];
-  value: number;
 }

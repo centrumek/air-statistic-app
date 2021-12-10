@@ -11,17 +11,9 @@ import { StandMeasurementDto } from '../model/api/stand-measurement.dto';
 import { StationSearchResponse } from '../model/api/station-search.response';
 import { StationSearchRequest } from '../model/api/search.request';
 import { VoivodeshipDto } from '../model/api/voivodeship.dto';
-import { of } from 'rxjs/internal/observable/of';
 import { PollutionStationMeasurementsDto } from '../model/api/station-measurements.dto';
 import { StationCords } from '../model/api/station-cords.dto';
 
-const TOP_POLLUTION_STATION_MEASUREMENTS_MOCK = {
-  address: 'ul. Juliusza Słowackiego 40',
-  location: 'Warszawa',
-  values: [17.3, 14.2, 35.8, 17.9, 15.5, 45.0],
-  stationName: '',
-  value: 14.2,
-};
 
 const LEAST_POLLUTION_STATION_MEASUREMENTS_MOCK = {
   address: 'ul. Juliusza Słowackiego 40',
@@ -81,10 +73,8 @@ export class ApiService {
     const queryParams = new QueryParams();
     const params: HttpParams = queryParams.params;
 
-    return of(TOP_POLLUTION_STATION_MEASUREMENTS_MOCK);
-    // TODO uncomment after backend changes
-    // return this.httpClient.get<ApiResponse<PollutionStationMeasurementsDto>>(path, {params})
-    //   .pipe(map(response => response.data));
+    return this.httpClient.get<ApiResponse<PollutionStationMeasurementsDto>>(path, {params})
+      .pipe(map(response => response.data));
   }
 
   public getLeastPolluted(): Observable<PollutionStationMeasurementsDto> {
@@ -92,10 +82,8 @@ export class ApiService {
     const queryParams = new QueryParams();
     const params: HttpParams = queryParams.params;
 
-    return of(LEAST_POLLUTION_STATION_MEASUREMENTS_MOCK);
-    // TODO uncomment after backend changes
-    // return this.httpClient.get<ApiResponse<PollutionStationMeasurementsDto>>(path, {params})
-    //   .pipe(map(response => response.data));
+    return this.httpClient.get<ApiResponse<PollutionStationMeasurementsDto>>(path, {params})
+      .pipe(map(response => response.data));
   }
 
   public getMiddlePolluted(): Observable<PollutionStationMeasurementsDto> {
@@ -103,10 +91,8 @@ export class ApiService {
     const queryParams = new QueryParams();
     const params: HttpParams = queryParams.params;
 
-    return of(MIDDLE_POLLUTION_STATION_MEASUREMENTS_MOCK);
-    // TODO uncomment after backend changes
-    // return this.httpClient.get<ApiResponse<PollutionStationMeasurementsDto>>(path, {params})
-    //   .pipe(map(response => response.data));
+    return this.httpClient.get<ApiResponse<PollutionStationMeasurementsDto>>(path, {params})
+      .pipe(map(response => response.data));
   }
 
   public getStations(): Observable<ApiResponseData<StationDto[]>> {
@@ -115,6 +101,15 @@ export class ApiService {
     const params: HttpParams = queryParams.params;
 
     return this.httpClient.get<ApiResponse<ApiResponseData<StationDto[]>>>(path, {params})
+      .pipe(map(response => response.data));
+  }
+
+  public getStation(stationCode: string): Observable<StationDto[]> {
+    const path = this.apiEndpointProvider.getPath(`/station/${stationCode}`);
+    const queryParams = new QueryParams();
+    const params: HttpParams = queryParams.params;
+
+    return this.httpClient.get<ApiResponse<StationDto[]>>(path, {params})
       .pipe(map(response => response.data));
   }
 

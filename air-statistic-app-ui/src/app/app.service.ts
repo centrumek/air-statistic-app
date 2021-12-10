@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class AppService {
   private backUrl = '';
-  private selectedVoivodeship = new BehaviorSubject<any>(null);
+  private formValues = new BehaviorSubject<any>(null);
 
   constructor(private router: Router) {
   }
@@ -35,10 +35,10 @@ export class AppService {
   }
 
   public setFormValues(value: string): void {
-    return this.selectedVoivodeship.next(value);
+    return this.formValues.next(value);
   }
 
   public getFormValues(): Observable<any> {
-    return this.selectedVoivodeship.asObservable();
+    return this.formValues.asObservable();
   }
 }
