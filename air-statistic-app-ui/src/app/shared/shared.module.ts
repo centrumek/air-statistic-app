@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { TailwindTestComponent } from '../tailwind-test/tailwind-test.component';
 import { ChartTestComponent } from '../chart-test/chart-test.component';
 import { AboutUsComponent } from '../page/about-us/about-us.component';
@@ -17,7 +17,7 @@ import { ChartDiagramComponent } from '../chart-diagram/chart-diagram.component'
 import { PollutionStationComponent } from './top-polluted-station/pollution-station.component';
 import { StationChartColumnComponent } from '../station-chart-column/station-chart-column.component';
 import { MapComponent } from '../map/map.component';
-import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { MAPBOX_API_KEY, NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { MapService } from '../map/map.service';
 import { MapModalComponent } from '../map-modal/map-modal.component';
 
@@ -45,9 +45,7 @@ import { MapModalComponent } from '../map-modal/map-modal.component';
   imports: [
     NgApexchartsModule,
     CommonModule,
-    NgxMapboxGLModule.withConfig({
-      accessToken: 'pk.eyJ1IjoiamRvbWluaWsiLCJhIjoiY2t3ejg5NDhwMDQ1NTJycWxuN2g1ZmNqZyJ9.KzlUFjYhzCK4fu87AcaEAg', // Optional, can also be set per map (accessToken input of mgl-map)
-    })
+    NgxMapboxGLModule,
   ],
   exports: [
     TailwindTestComponent,
@@ -70,4 +68,21 @@ import { MapModalComponent } from '../map-modal/map-modal.component';
   providers: [MapService]
 })
 export class SharedModule {
+  static forRoot(
+    config: IMyLibMapModuleConfig
+  ): ModuleWithProviders<SharedModule> {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        {
+          provide: MAPBOX_API_KEY,
+          useValue: config.mapboxToken,
+        },
+      ],
+    };
+  }
+}
+
+export interface IMyLibMapModuleConfig {
+  mapboxToken: string;
 }
