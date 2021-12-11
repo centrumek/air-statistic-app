@@ -35,6 +35,8 @@ export class DetailTablePageComponent implements OnInit, OnDestroy {
   }[] = [];
   private gridApi: GridApi | any;
 
+  public loaded = false;
+  public noData = false;
 
   constructor(private detailPageService: DetailPageService,
               private route: ActivatedRoute,) {
@@ -62,6 +64,11 @@ export class DetailTablePageComponent implements OnInit, OnDestroy {
             value: this.stand?.measurement_values[index],
           }
         });
+        this.loaded = true;
+      }, error => {
+        this.loaded = true;
+        this.noData = true;
+        console.log(error);
       });
   }
 

@@ -17,6 +17,8 @@ export class DetailDiagramPageComponent implements OnInit, OnDestroy {
   public standMeasurementArray?: StandMeasurement[] | null;
   public stand?: StandMeasurement;
   private unsubscribe = new EventEmitter<boolean>();
+  public loaded = false;
+  public noData = false;
 
   constructor(private route: ActivatedRoute, private detailPageService: DetailPageService) {
     this.standCode = this.route.snapshot.params['standCode'];
@@ -45,6 +47,11 @@ export class DetailDiagramPageComponent implements OnInit, OnDestroy {
           }
         });
         this.stand = this.standMeasurementArray[0];
+        this.loaded = true;
+      }, error => {
+        this.loaded = true;
+        this.noData = true;
+        console.log(error);
       });
   }
 

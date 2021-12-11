@@ -1,13 +1,13 @@
-import { Component, EventEmitter, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter } from '@angular/core';
 import { StorageService } from '../../service/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-page-not-found',
-  templateUrl: './page-not-found.component.html',
-  styleUrls: ['./page-not-found.component.scss']
+  selector: 'app-no-data',
+  templateUrl: './no-data.component.html',
+  styleUrls: ['./no-data.component.scss']
 })
-export class PageNotFoundComponent implements OnDestroy {
+export class NoDataComponent {
 
   private unsubscribe = new EventEmitter<boolean>();
   public previousUrl: string | null;

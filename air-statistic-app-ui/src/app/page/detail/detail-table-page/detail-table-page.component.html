@@ -1,6 +1,8 @@
 <app-detail-navigation [standCode]="standCode"></app-detail-navigation>
 
-<section class="py-1 bg-blueGray-50 flex items-center justify-center" style="width: 99vw;">
+<app-no-data *ngIf="noData"></app-no-data>
+
+<section class="py-1 bg-blueGray-50 flex items-center justify-center" *ngIf="loaded && !noData" style="width: 99vw;">
   <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-24">
     <ag-grid-angular
       style="width: 90%; height: 800px; padding: 20px"
