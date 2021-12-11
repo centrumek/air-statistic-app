@@ -254,7 +254,7 @@ e3 ||..|{ e4
 - **Mapbox GL JS 2.6.1** - JavaScript library for interactive, customizable vector maps on the web.
 
 ### Backend
-- **PHP8.0** - is a general-purpose scripting language geared towards web development
+- **PHP8.0** - general-purpose scripting language geared towards web development
 - **Laravel 8** - Web application framework with expressive, elegant syntax for API creation.
 
 ### Database
