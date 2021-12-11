@@ -259,3 +259,6 @@ e3 ||..|{ e4
 - **PostgreSQL 14.0** - Open source, relational database management system.
 - **pgAdmin 6.2** - Open source administration and development platform for PostgreSQL.
 - **Python 3.9** - Used for data transformation coming from GIOŚ.
+
+### Tests
+- **Python 3.9 + PyTest** - framework for automated test  
