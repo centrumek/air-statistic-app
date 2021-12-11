@@ -254,12 +254,13 @@ e3 ||..|{ e4
 - **Mapbox GL JS 2.6.1** - JavaScript library for interactive, customizable vector maps on the web.
 
 ### Backend
+- **PHP8.0** - is a general-purpose scripting language geared towards web development
+- **Laravel 8** - Web application framework with expressive, elegant syntax for API creation.
 
 ### Database
 - **PostgreSQL 14.0** - Open source, relational database management system.
 - **pgAdmin 6.2** - Open source administration and development platform for PostgreSQL.
 - **Python 3.9** - Used for data transformation coming from GIOŚ.
-- **Laravel 8** - Web application framework with expressive, elegant syntax for API creation.
 
 ### Tests
 - **Python 3.9 + PyTest** - framework for automated test  
