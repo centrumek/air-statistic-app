@@ -1,6 +1,8 @@
 <div class="flex justify-center sm:justify-center ml-10 md:justify-between  items-start sm:items-center flex-wrap">
 	<ng-container #chartContainer></ng-container>
   
+  <app-no-data *ngIf="noData"></app-no-data>
+  
   <div class="flex justify-center items-center" *ngIf="!loaded" style="height: 80vh; width: 100vw">
     <div
       class="
@@ -13,5 +15,4 @@
     "
     ></div>
   </div>
-
 </div>

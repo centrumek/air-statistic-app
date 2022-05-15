@@ -1,7 +1,9 @@
 <app-detail-navigation [standCode]="standCode"></app-detail-navigation>
 <div class="mx-4 my-10 flex justify-center " style="min-height: 600px;">
   
-  <div class="flex justify-center items-center" *ngIf="!stand">
+  <app-no-data *ngIf="noData"></app-no-data>
+  
+  <div class="flex justify-center items-center" *ngIf="!loaded">
     <div
       class="
       loader
@@ -14,5 +16,5 @@
     ></div>
   </div>
   
-  <app-chart-diagram style="width: 100vw;" [measurements]="stand" *ngIf="stand"></app-chart-diagram>
+  <app-chart-diagram style="width: 100vw;" [measurements]="stand" *ngIf="loaded && !noData"></app-chart-diagram>
 </div>

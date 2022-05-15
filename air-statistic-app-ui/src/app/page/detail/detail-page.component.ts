@@ -24,6 +24,7 @@ export class DetailPageComponent implements OnInit, OnDestroy {
   private componentList: any[] = [];
 
   public loaded = false;
+  public noData = false;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -49,6 +50,10 @@ export class DetailPageComponent implements OnInit, OnDestroy {
         })
         this.loadChartList();
         this.loaded = true;
+      }, error => {
+        this.loaded = true;
+        this.noData = true;
+        console.log(error);
       });
   }
 

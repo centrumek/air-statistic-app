@@ -20,6 +20,7 @@ import { MapComponent } from '../map/map.component';
 import { MAPBOX_API_KEY, NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { MapService } from '../map/map.service';
 import { MapModalComponent } from '../map-modal/map-modal.component';
+import { NoDataComponent } from './no-data/no-data.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { MapModalComponent } from '../map-modal/map-modal.component';
     StationChartColumnComponent,
     MapComponent,
     MapModalComponent,
+    NoDataComponent,
   ],
   imports: [
     NgApexchartsModule,
@@ -64,6 +66,7 @@ import { MapModalComponent } from '../map-modal/map-modal.component';
     StationChartColumnComponent,
     MapComponent,
     MapModalComponent,
+    NoDataComponent,
   ],
   providers: [MapService]
 })
